@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="book-container col-sm">
+      <div class="card" style="width: 20rem;">
+        <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
+        <%# <% if @book.cover.attached? %>
+          <%# <%= cl_image_tag @book.cover.key, crop: :fill %> 
+        <%# <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%=@book.title %></h5>
+          <h5 class="card-title"><%=@book.author %></h5>
+          <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
+          <div class="button-container">
+            <a href="/books" class="btn btn-primary" id="book-description-button">Back to the library</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container col-sm">
+      <div id="map"
+        style="width: 100%; height: 100%;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+
+   <%# <div class="form-container"> %>
+    <%# <%= simple_form_for [@book, @renting] do |f| %>
+      <%# <%= f.input :start_date, as: :date, html5: true%>
+      <%# <%= f.input :end_date, as: :date, html5: true%>
+      <%# <%= f.button :submit %>
+    <%# <% end %>
+  </div>
+</div>
