@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="search-container col-lg-12 text-center">
+      <h1> Search Bar </h1>
+    </div>
+    <button type="button" class="btn btn-primary btn-lg" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
+  </div>
+  <div class="container">
+    <div class="row">
+        <% for book in @books do %>
+        <div class="book-container col-lg-3 col-md-4 col-sm-12">
+        <div class="card">
+          <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
+          <%# <% if book.photo.attached? %> 
+            <%# <%= cl_image_tag book.photo.key, crop: :fill %>
+          <%# <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%=link_to book.title, book_path(book) %></h5>
+          <h5 class="card-title"><%=book.author %></h5>
+        </div>
+      </div>
+    </div>
+        <% end %>
+    </div>
+  </div>
+</div>
