@@ -1,0 +1,2 @@
+class SwapOffersController < ApplicationController
+end
