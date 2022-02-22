@@ -4,14 +4,14 @@
       <div class="card" style="width: 20rem;">
         <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
         <%# <% if @book.cover.attached? %>
-          <%# <%= cl_image_tag @book.cover.key, crop: :fill %> 
+          <%# <%= cl_image_tag @book.cover.key, crop: :fill %>
         <%# <% end %>
         <div class="card-body">
           <h5 class="card-title"><%=@book.title %></h5>
           <h5 class="card-title"><%=@book.author %></h5>
           <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
           <div class="button-container">
-            <a href="/books" class="btn btn-primary" id="book-description-button">Back to the library</a>
+            <h6 class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", new_book_offer_path(@book) %></h6>
           </div>
         </div>
       </div>
