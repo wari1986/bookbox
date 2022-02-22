@@ -1,8 +1,14 @@
-    <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
-    <%# <% if book.photo.attached? %>
-    <%# <%= cl_image_tag book.photo.key, crop: :fill %>
-    <%# <% end %>
 <div class="index-container my-12 mx-auto px-4 md:px-12">
+  <div class="search-container">
+    <%= form_tag movies_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+    class: "form-control",
+    placeholder: "Find a book"
+  %>
+  <%= submit_tag "Search", class: "" %>
+<% end %>
+  </div>
   <div class="grid-container flex flex-wrap -mx-1 lg:-mx-4">
     <% for book in @books do %>
     <div class="card flex w-full sm:w-1/2 md:w-1/3 lg:my-4 lg:w-1/4">
