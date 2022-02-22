@@ -6,18 +6,18 @@
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%# <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
   <body>
     <%# <%= render 'shared/navbar' %>
-    <%# <%= render 'shared/flashes' %> 
-    <main class="container mx-auto mt-28 px-5 flex">
-  
+    <%# <%= render 'shared/flashes' %>
+    <%# <main class="container mx-auto mt-28 px-5 flex"> %>
+
     <%= yield %>
-    </main>
+    <%# </main> %>
   </body>
 </html>
