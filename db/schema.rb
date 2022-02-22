@@ -68,6 +68,20 @@ ActiveRecord::Schema.define(version: 2022_02_19_142843) do
     t.index ["offer_id"], name: "index_swap_offers_on_offer_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.date "pickup_date"
+    t.string "pickup_location"
+    t.float "latitute"
+    t.float "longitute"
+    t.string "status"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_transactions_on_book_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -92,4 +106,6 @@ ActiveRecord::Schema.define(version: 2022_02_19_142843) do
   add_foreign_key "reviews", "users"
   add_foreign_key "swap_offers", "books"
   add_foreign_key "swap_offers", "offers"
+  add_foreign_key "transactions", "books"
+  add_foreign_key "transactions", "users"
 end
