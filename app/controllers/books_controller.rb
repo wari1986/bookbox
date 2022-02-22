@@ -21,7 +21,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user = current_user
    if @book.save
-      redirect_to root_path
+     redirect_to action: "index"
    else
     render :new
    end
