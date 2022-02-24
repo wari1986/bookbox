@@ -1,5 +1,4 @@
-'CLOUDINARY_URL=cloudinary://941881364241441:77aGNAdIpIUU-FhdGW9G2N0_aLI@duxuerelt
-'# This file should contain all the record creation needed to seed the database with its default values.
+# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
@@ -34,7 +33,8 @@ book = Book.new(
   language: book_detail["language"],
   credit_worth: (1..5).to_a.sample,
   displayed: ["true", "false"].sample,
-  user: User.all.sample
+  user: User.all.sample, #current_user
+  isbn: "9780151002177"
 )
 book.save
 p book
