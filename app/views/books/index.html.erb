@@ -17,9 +17,9 @@
   <%# <div class="grid-container flex flex-wrap -mx-1 lg:-mx-4"> %>
   <div class="grid grid-cols-5 gap-4">
     <% for book in @books do %>
-    <div class="card w-60 bg-gray">
+    <div class="card bg-gray">
       <div class=" ">
-        <img alt="Placeholder" class="min-height-full" src="https://picsum.photos/600/400/?random">
+        <img class='w-full' src="<%= book.cover %>" alt="book cover">
       </div>
       <div class="  w-full leading-tight md:p-4">
         <h6 class=""><%=link_to book.title, book_path(book) %></h6>
