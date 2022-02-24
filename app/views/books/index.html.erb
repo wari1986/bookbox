@@ -1,31 +1,32 @@
 
 <button class="flex justify-center bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
 
-<div class="container my-12 mx-auto px-4 md:px-12">
-  <div class="container flex flex-wrap -mx-1 lg:-mx-4">
-<div class="index-container my-12 mx-auto px-4 md:px-12">
-  <div class="search-container">
+<div class="container my-12 mx-auto px-0 md:px-12">
+  <div class="mx-auto py-12 w-1/2">
     <%= form_tag books_path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
     class: "form-control",
     placeholder: "Find a book"
   %>
-  <%= submit_tag "Search", class: "" %>
+  <button class="">
+    <%= submit_tag "Search", class: "" %>
+  </button>
 <% end %>
   </div>
   <%# <div class="grid-container flex flex-wrap -mx-1 lg:-mx-4"> %>
-  <div class="grid grid-cols-5 gap-4">
-    <% for book in @books do %>
-    <div class="card w-60 bg-gray">
-      <div class=" ">
-        <img alt="Placeholder" class="min-height-full" src="https://picsum.photos/600/400/?random">
+
+    <div class="grid grid-cols-5 gap-4">
+      <% for book in @books do %>
+      <div class="card h-60 bg-gray">
+        <div class=" ">
+          <img alt="Placeholder" class="h-full" src="https://picsum.photos/600/400/?random">
+        </div>
+        <div class="  h-full leading-tight md:p-4">
+          <h6 class=""><%=link_to book.title, book_path(book) %></h6>
+          <h6 class=""><%=book.author %></h6>
+        </div>
       </div>
-      <div class="  w-full leading-tight md:p-4">
-        <h6 class=""><%=link_to book.title, book_path(book) %></h6>
-        <h6 class=""><%=book.author %></h6>
-      </div>
-    </div>
       <% end %>
-  </div>
+    </div>
 </div>
