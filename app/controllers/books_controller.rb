@@ -2,9 +2,14 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     # @markers = [{
-    #   lat: @book.latitude,
-    #   lng: @book.longitude
+      #   lat: @book.latitude,
+      #   lng: @book.longitude
     # }]
+    if params[:query].present?
+      @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @books = Book.all
+    end
   end
 
   def show
@@ -21,7 +26,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user = current_user
    if @book.save
-      redirect_to root_path
+     redirect_to action: "index"
    else
     render :new
    end
