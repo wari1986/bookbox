@@ -2,9 +2,14 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     # @markers = [{
-    #   lat: @book.latitude,
-    #   lng: @book.longitude
+      #   lat: @book.latitude,
+      #   lng: @book.longitude
     # }]
+    if params[:query].present?
+      @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @books = Book.all
+    end
   end
 
   def show
