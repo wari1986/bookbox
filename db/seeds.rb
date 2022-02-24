@@ -17,6 +17,10 @@ puts "Cleaning database..."
 Book.destroy_all
 User.destroy_all
 
+10.times do |n|
+  User.create(email: "User#{n+1}@email.com", password: '123456')
+end
+
 book = Book.new(
   condition: ["Used", "Good condition", "As new", "new"].sample,
   location: Faker::Address.state,
@@ -28,13 +32,9 @@ book = Book.new(
   description: book_detail["description"],
   language: book_detail["language"],
   credit_worth: (1..5).to_a.sample,
-  displayed: ["true", "false"].sample
-  # user_id:
+  displayed: ["true", "false"].sample,
+  user: User.all.sample
 )
-byebug
-
-10.times do |n|
-  User.create(email: "User#{n+1}@email.com", password: '123456')
-end
-
+book.save
+p book
 puts "users newd and books created"
