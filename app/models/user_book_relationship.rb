@@ -1,0 +1,2 @@
+class UserBookRelationship < ApplicationRecord
+end
