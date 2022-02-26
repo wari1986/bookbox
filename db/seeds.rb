@@ -38,7 +38,6 @@ isbns.each do |isbn|
       language: book_detail["language"],
       credit_worth: (1..5).to_a.sample,
       displayed: ["true", "false"].sample,
-      user: user, #current_user,
       isbn: isbn
     )
     book.save
