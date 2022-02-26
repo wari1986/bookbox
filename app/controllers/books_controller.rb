@@ -48,7 +48,7 @@ class BooksController < ApplicationController
     @book.user = current_user
 
    if @book.save
-     redirect_to action: "show"
+     redirect_to action: "index"
    else
     render :new
    end
