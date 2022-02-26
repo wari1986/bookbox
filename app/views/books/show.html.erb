@@ -7,6 +7,7 @@
           <%# <%= cl_image_tag @book.cover.key, crop: :fill %>
         <%# <% end %>
         <div class="card-body">
+          <img src="<%=@book.cover %>" alt="">
           <h5 class="card-title"><%=@book.title %></h5>
           <h5 class="card-title"><%=@book.author %></h5>
           <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
