@@ -22,9 +22,9 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
-    book.user = current_user
-    if book.save
+    @book = Book.new(book_params)
+    @book.user = current_user
+    if @book.save
       redirect_to action: "index"
     else
       render :new
