@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  has_many :user_book_relationships
+  has_many :user_book_relationships, dependent: :destroy
   has_many :users, through: :user_book_relationships
   has_many :reviews
 
