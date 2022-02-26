@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_26_134209) do
+ActiveRecord::Schema.define(version: 2022_02_26_134515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 2022_02_26_134209) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "swaps", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.integer "swapper_id"
+    t.integer "swapped_book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_swaps_on_book_id"
+    t.index ["user_id"], name: "index_swaps_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.date "pickup_date"
     t.string "pickup_location"
@@ -107,6 +118,8 @@ ActiveRecord::Schema.define(version: 2022_02_26_134209) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
+  add_foreign_key "swaps", "books"
+  add_foreign_key "swaps", "users"
   add_foreign_key "transactions", "books"
   add_foreign_key "transactions", "users"
   add_foreign_key "user_book_relationships", "books"
