@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :books do
-    resources :offers
-    resources :swap_offers
+    resources :swaps
     resources :reviews, except: [:destroy]
   end
   resources :users, only: [:show]
