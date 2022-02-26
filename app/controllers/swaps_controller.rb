@@ -1,0 +1,2 @@
+class SwapsController < ApplicationController
+end
