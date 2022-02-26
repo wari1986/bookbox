@@ -1,8 +1,7 @@
 class Book < ApplicationRecord
-  belongs_to :user
-  has_many :books
-  validates :title, :cover, :location, :condition, :category, :year, :author, :description, :language, presence: true
+  has_many :user_book_relationships
+  has_many :users, through: :user_book_relationships
+  has_many :reviews
 
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  #validates :title, :cover, :location, :condition, :category, :year, :author, :description, :language, presence: true
 end
