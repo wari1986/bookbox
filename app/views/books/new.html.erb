@@ -1,13 +1,10 @@
 <div class="w-1/3 mx-auto ">
-    <h1 class='text-center my-8 align-center'>Add your Book</h1>
+    <h1 class='text-center my-8 align-center'>Add a book</h1>
   <div class="w-full">
     <%= simple_form_for @book do |f| %>
-      <%= f.input :title %>
-      <%= f.input :author %>
-      <%= f.input :year, as: :date, html5: true%>
-      <%= f.input :location %>
+      <%= f.input :isbn %>
       <%= f.input :condition %>
-      <%= f.input :cover, as: :file %>
+      <%= f.input :displayed %>
       <%= f.button :submit %>
     <% end %>
   </div>
