@@ -51,6 +51,21 @@ isbns.each do |isbn|
   book.save
   p book
 
+  # creating reviews
+  # TO DO reviews should be written only by owners or previous owners of a book.
+  reviews_per_book = (0..3).to_a.sample
+  reviews_per_book.times do
+    sentence_count = (3..8).to_a.sample
+    review = Review.new(
+      title: ["Good book", "My favourite book", "Terrible book", "Excellent book", "The worst book ever", "Loved it"].sample,
+      stars: (1..5).to_a.sample,
+      content: Faker::Lorem.paragraph(sentence_count: sentence_count),
+      book: book,
+      user: User.order(Arel.sql('RANDOM()')).first
+    )
+    review.save
+  end
+
   # creating a random number of total user-book relationships for this specific book
   total_user_book_relationships = (1..5).to_a.sample
 
