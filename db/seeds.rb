@@ -65,6 +65,7 @@ isbns.each do |isbn|
     else
       owned = false
     end
+    # TO DO, from the second iteration, user should be swapper, then swapper_2, etc.)
     user_book_relationship = UserBookRelationship.new(
       user: user,
       book: book,
@@ -72,9 +73,10 @@ isbns.each do |isbn|
     )
     user_book_relationship.save
     # owned = false means that the book has previously been swapped, therefore we are seeding swaps only if owned == false
+    swapper = User.order(Arel.sql('RANDOM()')).first
     if user_book_relationship.owned == false
-      swapper = User.order(Arel.sql('RANDOM()')).first
-      # this needs to be fixed, as we don't know if this book is currently owned or not
+      # TO DO this needs to be fixed, as we don't know if this book is currently owned or not
+      # TO DO swapper should become user in the next iteration, and so on, which is not the case
       swapped_book = swapper.books.sample
       swap = Swap.new(
         user: user,
@@ -83,6 +85,23 @@ isbns.each do |isbn|
         swapped_book: swapped_book,
         accepted: true
       )
+      # next iteration should be something like
+
+      # swap = Swap.new(
+      #   user: swapper,
+      #   book: book,
+      #   swapper: swapper_2,
+      #   swapped_book: swapped_book,
+      #   accepted: true
+      # )
+
+      # then
+      # swap = Swap.new(
+      #   user: swapper_2,
+      #   book: book,
+      #   swapper: swapper_3,
+      #   swapped_book: swapped_book,
+      #   accepted: true
       swap.save
     end
     p user_book_relationship
@@ -92,3 +111,5 @@ isbns.each do |isbn|
 end
 
 puts "New users, books, user-books relationships and swaps created"
+
+# creating book reviews
