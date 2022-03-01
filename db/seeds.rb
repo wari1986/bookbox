@@ -8,6 +8,7 @@
 require "json"
 require "open-uri"
 puts "Cleaning database..."
+Swap.destroy_all
 Book.destroy_all
 User.destroy_all
 UserBookRelationship.destroy_all

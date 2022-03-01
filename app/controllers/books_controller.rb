@@ -18,7 +18,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     # @renting = Renting.new
-
   end
 
   def new
@@ -53,6 +52,7 @@ class BooksController < ApplicationController
     render :new
    end
 
+    redirect_to book_path(@book)
   end
 
   private
