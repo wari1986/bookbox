@@ -9,8 +9,6 @@ class BooksController < ApplicationController
     end
     if params[:query].present?
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
-    else
-      @books = Book.all
     end
   end
 
