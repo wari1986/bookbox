@@ -12,7 +12,7 @@
           <h5 class="card-title"><%=@book.author %></h5>
           <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
           <div class="button-container">
-            <h6 class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", new_book_offer_path(@book) %></h6>
+            <h6 class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", book_path(@book) %></h6>
           </div>
         </div>
       </div>
