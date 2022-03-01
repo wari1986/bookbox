@@ -36,7 +36,7 @@
   </div>
   <div class="info w-3/4">
     <div class="grid grid-cols-3 gap-4 md:grid-cols-2">
-      <% for book in @books do %>
+      <% @books.each do |book| %>
       <div class="flex mx-auto">
         <div class="w-1/2 flex ">
           <img class='w-full align-middle object-fit' src="<%= book.cover %>" alt="book cover">
