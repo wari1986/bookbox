@@ -1,0 +1,8 @@
+<H1>Hello  </H1>
+<h2> I'm interested in  ' </h2>
+<p> here is the book i want to swap</p>
+
+<%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
+  <%= f.input :swapped_book_id, collection: @mybooks %>
+  <%= f.submit "send swap offer" %>
+<% end %>

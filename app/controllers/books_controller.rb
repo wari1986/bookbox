@@ -17,6 +17,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    @swap = Swap.new
     # @renting = Renting.new
   end
 
@@ -49,6 +51,15 @@ class BooksController < ApplicationController
     render :new
    end
   end
+
+  # def create_relationship
+  #   @create_deal = user_book_relationship = UserBookRelationship.new(
+  #     user: user,
+  #     book: book,
+  #     owned: owned
+  #   )
+  #   user_book_relationship.save
+  # end
 
   private
 
