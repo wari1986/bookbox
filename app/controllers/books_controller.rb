@@ -25,7 +25,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    # @book = Book.new(book_params)
     url = "https://www.googleapis.com/books/v1/volumes?q=isbn:#{book_params[:isbn]}"
     book_serialized = URI.open(url).read
     book_hash = JSON.parse(book_serialized)
@@ -41,18 +40,14 @@ class BooksController < ApplicationController
       description: book_detail["description"],
       language: book_detail["language"],
       displayed: book_params[:displayed],
-      user: current_user,
       isbn: params[:isbn]
     )
-    @book.user = current_user
 
    if @book.save
-     redirect_to action: "index"
+     redirect_to book_path(@book)
    else
     render :new
    end
-
-    redirect_to book_path(@book)
   end
 
   private
