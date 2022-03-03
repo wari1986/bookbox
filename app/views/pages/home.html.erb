@@ -1,12 +1,37 @@
 <div>
-  <h1 class="font-bold text-4xl">Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
-</div>
+    <div class="bg-center bg-cover  min-h-screen " style="background-image: url(https://images.unsplash.com/photo-1547555999-14e818e09e33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80);">
+        <div class="text-white bold-700">
+          <nav class="bg-transparent">
+              <div class="container px-6 py-4 mx-auto">
+                  <div class="lg:flex lg:items-center lg:justify-between">
+                      <div class="flex  justify-between">
+                          <div class="text-xl font-semibold text-gray-700">
+                              <a class="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">BookBox</a>
 
-<div class="container">
-  <h1>BookCHAIN</h1>
-  <p> Sleeping is good, reading is even better!</p>
-  <li>
-    <a href="">get my book</a>
-  </li>
+                          </div>
+                          <!-- Mobile menu button -->
+                          <div class="flex lg:hidden">
+                              <button type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                                  <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                                      <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                                  </svg>
+                              </button>
+                          </div>
+                      </div>
+
+                      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+                      <div class="hidden -mx-4 lg:flex lg:items-center">
+                          <a href="#" class="block mx-4 mt-2 text-sm text-white-700 bold capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400">Sign in</a>
+                          <%# <a href="#" class="block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400">Web Designers</a>
+                          <a href="#" class="block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400">UI/UX Designers</a>
+                          <a href="#" class="block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400">Contact</a> %>
+                      </div>
+                  </div>
+              </div>
+          </nav>
+          <div class="flex justify-center text-center">
+              <button class="w-full px-4 py-2 mt-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-indigo-400 rounded-md lg:w-auto a hover:bg-indigo-400 focus:outline-none focus:bg-indigo-400">Find a Book!</button>
+          </div>
+        </div>
+    </div>
 </div>

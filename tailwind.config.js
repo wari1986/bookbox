@@ -9,6 +9,11 @@ module.exports = {
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+        backgroundImage: {
+         'hero-bg': "url('../assets/images/bghome.jpg')",
+        }
+      },
     screens: {
       sm: '640px',
       md: '768px',
