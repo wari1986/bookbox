@@ -45,11 +45,11 @@ class BooksController < ApplicationController
       isbn: params[:isbn]
     )
 
-   if @book.save
-     redirect_to book_path(@book)
-   else
-    render :new
-   end
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
   end
 
   # def create_relationship
