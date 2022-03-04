@@ -46,10 +46,18 @@ class BooksController < ApplicationController
     )
 
     if @book.save
+      user_book_relationship = UserBookRelationship.new(
+        owned: true,
+        user: current_user,
+        book: @book
+      )
+      user_book_relationship.save
       redirect_to book_path(@book)
     else
       render :new
     end
+
+
   end
 
   # def create_relationship
