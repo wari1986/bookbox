@@ -4,7 +4,7 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    @markers = @books.geocoded.map do |book|
+    @markers = @book.geocoded.map do |book|
       {
         lat: book.latitude,
         lng: book.longitude
@@ -17,6 +17,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    @swap = Swap.new
     # @renting = Renting.new
   end
 
@@ -43,12 +45,21 @@ class BooksController < ApplicationController
       isbn: params[:isbn]
     )
 
-   if @book.save
-     redirect_to book_path(@book)
-   else
-    render :new
-   end
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
   end
+
+  # def create_relationship
+  #   @create_deal = user_book_relationship = UserBookRelationship.new(
+  #     user: user,
+  #     book: book,
+  #     owned: owned
+  #   )
+  #   user_book_relationship.save
+  # end
 
   private
 
