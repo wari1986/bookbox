@@ -17,6 +17,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    @swap = Swap.new
     # @renting = Renting.new
   end
 
@@ -25,7 +27,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    # @book = Book.new(book_params)
     url = "https://www.googleapis.com/books/v1/volumes?q=isbn:#{book_params[:isbn]}"
     book_serialized = URI.open(url).read
     book_hash = JSON.parse(book_serialized)
@@ -41,19 +42,32 @@ class BooksController < ApplicationController
       description: book_detail["description"],
       language: book_detail["language"],
       displayed: book_params[:displayed],
-      user: current_user,
       isbn: params[:isbn]
     )
-    @book.user = current_user
 
-   if @book.save
-     redirect_to action: "index"
-   else
-    render :new
-   end
+    if @book.save
+      user_book_relationship = UserBookRelationship.new(
+        owned: true,
+        user: current_user,
+        book: @book
+      )
+      user_book_relationship.save
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
 
-    redirect_to book_path(@book)
+
   end
+
+  # def create_relationship
+  #   @create_deal = user_book_relationship = UserBookRelationship.new(
+  #     user: user,
+  #     book: book,
+  #     owned: owned
+  #   )
+  #   user_book_relationship.save
+  # end
 
   private
 

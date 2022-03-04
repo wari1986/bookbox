@@ -12,10 +12,21 @@
           <h5 class="card-title"><%=@book.author %></h5>
           <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
           <div class="button-container">
-            <h6 class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", book_path(@book) %></h6>
+            <button class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", new_user_book_relationship_swap_path(@book) %></button>
+            <button class="bg-indigo-400 text-white"><%=link_to "Add a review", new_book_review_path(@book) %></button>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="container">
+      <% @book.reviews.each do |review|%>
+      <div>
+        <h1><%= review.title %></h1>
+        <p><%= review.content %></p>
+        <p><%= review.stars %></p>
+      </div>
+      <% end  %>
     </div>
 
     <div class="map-container col-sm">
@@ -27,11 +38,5 @@
     </div>
   </div>
 
-   <%# <div class="form-container"> %>
-    <%# <%= simple_form_for [@book, @renting] do |f| %>
-      <%# <%= f.input :start_date, as: :date, html5: true%>
-      <%# <%= f.input :end_date, as: :date, html5: true%>
-      <%# <%= f.button :submit %>
-    <%# <% end %>
   </div>
 </div>
