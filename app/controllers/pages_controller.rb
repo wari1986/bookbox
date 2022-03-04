@@ -15,7 +15,7 @@ class PagesController < ApplicationController
     my_user_book_relationships_false = UserBookRelationship.where(user: current_user, owned: false)
     my_user_book_relationships_false.each do |my_user_book_relationship_false|
       my_book = Book.find(my_user_book_relationship_false.book_id)
-      @my_books << my_book
+      @my_previously_owned_books << my_book
     end
 
     # all the swap (offers) that I have received and are pending for validation by me
