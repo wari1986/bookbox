@@ -1,15 +1,16 @@
-<div class="container bg-indigo-100">
+<div class="bg-gradient-to-tr from-blue-100 via-blue-300 to-blue-500 min-h-screen">
 
-  <div class="card-body font-bold text-center ">
-  <h1>Please select the book you want to swap</h1>
-  </div>
+  <div class="container">
+    <div class="card-body font-bold text-center ">
+    <h1>Please select the book you want to swap</h1>
+    </div>
 
-  <div class="card-body">
-    <%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
-      <%= f.input :swapped_book_id, collection: @mybooks %>
-      <%= f.submit "Send" %>
-    <% end %>
+    <div class="card-body ">
+      <%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
+        <%= f.input :swapped_book_id, collection: @mybooks %>
+        <%= f.submit "Send" %>
+      <% end %>
+    </div>
   </div>
 
 </div>
-®

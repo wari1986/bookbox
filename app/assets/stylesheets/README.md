@@ -92,7 +92,6 @@ Look at your main `application.scss` file to see how SCSS files are imported. Th
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap/scss/bootstrap"; // from the node_modules
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
