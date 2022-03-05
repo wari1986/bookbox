@@ -1,8 +1,15 @@
-<H1>Hello  </H1>
-<h2> I'm interested in  ' </h2>
-<p> here is the book i want to swap</p>
+<div class="container bg-indigo-100">
 
-<%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
-  <%= f.input :swapped_book_id, collection: @mybooks %>
-  <%= f.submit "send swap offer" %>
-<% end %>
+  <div class="card-body font-bold text-center ">
+  <h1>Please select the book you want to swap</h1>
+  </div>
+
+  <div class="card-body">
+    <%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
+      <%= f.input :swapped_book_id, collection: @mybooks %>
+      <%= f.submit "Send" %>
+    <% end %>
+  </div>
+
+</div>
+®
