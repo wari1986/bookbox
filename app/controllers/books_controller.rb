@@ -58,9 +58,8 @@ class BooksController < ApplicationController
       render :new
     end
 
-
   end
-
+  
   # def create_relationship
   #   @create_deal = user_book_relationship = UserBookRelationship.new(
   #     user: user,
