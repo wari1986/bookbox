@@ -1,42 +1,71 @@
-<div class="container">
-  <div class="row">
-    <div class="book-container col-sm">
-      <div class="card" style="width: 20rem;">
-        <%# <img class="card-img-top" src="..." alt="Card image cap"> %>
-        <%# <% if @book.cover.attached? %>
-          <%# <%= cl_image_tag @book.cover.key, crop: :fill %>
-        <%# <% end %>
-        <div class="card-body">
-          <img src="<%=@book.cover %>" alt="">
-          <h5 class="card-title"><%=@book.title %></h5>
-          <h5 class="card-title"><%=@book.author %></h5>
-          <%# <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> %>
-          <div class="button-container">
-            <button class="bg-indigo-400 text-white"><%=link_to "+ Make an offer", new_user_book_relationship_swap_path(@book) %></button>
-            <button class="bg-indigo-400 text-white"><%=link_to "Add a review", new_book_review_path(@book) %></button>
+<div class="index-container my-12 mx-auto px-4 md:px-12 bg-white">
+  <div class="flex my-16">
+    <div class="info w-1/4 text-lg bg-white mr-8">
+      <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
+      <div class="m-8 py-8">
+        <h1 class='text-xl my-4'>Your Profile</h1>
+        <ul>
+          <li>Your swaps</li>
+          <li>Books in the bookshelf</li>
+          <li>Books in the BookBox</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info w-3/4 p-4">
+      <div class=''>
+        <div class="flex mb-8">
+          <div class='w-1/2 my-12'>
+            <h1 class="text-3xl my-2"><%=@book.title %></h1>
+            <h5 class="text-gray-500 my-2"><%=@book.author %></h5>
+            <%# <h5 class=""><%=@book.average_rating %></h5>
+            <%# <h5 class=""><%=@book.distance %></h5>
+            <p class='text-justify my-8'><%= @book.description.truncate_words(200) %></p>
+            <div class='grid grid-cols-3 my-4 w-1/2'>
+              <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
+            </div>
           </div>
+          <div class='w-1/2 flex'>
+            <img class='mx-auto'src="<%=@book.cover %>" alt="">
+          </div>
+        </div>
+        <div class="w-1/2 flex justify-end">
+          <button class="bg-indigo-400 text-white mr-8 py-3 px-8 rounded"><%=link_to "+ Make an offer", new_user_book_relationship_swap_path(@book) %></button>
+        </div>
+        <div class='mx-auto my-16 p-8 h-32 bg-gray-200 text-center'>
+          <h3>Previous Owners</h3>
+          <div>
+            <%# previous owners Avatars (array of owners for this book user relationship) %>
+          </div>
+        </div>
+    </div>
+    <div class='flex'>
+      <div class='w-1/2'>
+        <h2 class='text-3xl py-8 text-center'>What do you think of this book?</h2>
+        <div class=" m-16 ">
+          <div class="w-full">
+            <%= simple_form_for(@review, url: book_reviews_path(@book), method: :post ) do |f| %>
+              <%= f.input :title %>
+              <%= f.input :content%>
+              <%= f.input :stars %>
+              <%= f.button :submit %>
+            <% end %>
+          </div>
+        </div>
+        <%# <button class="bg-indigo-400 text-white"><%=link_to "Add a review", new_book_review_path(@book) %></button>
+      </div>
+      <div class='w-1/2 mx-8'>
+        <h2 class='text-3xl text-center py-8'>Reviews</h2>
+        <% @book.reviews.each do |review|%>
+        <div class='mx-16 my-8 px-4 py-2 rounded '>
+          <h1 class='bg-gray-200 text-lg py-2 px-4'><%= review.title %></h1>
+          <p class='bg-gray-100 py-2 px-4'><%= review.content %></p>
+          <p class='py-2 px-4'><%= review.stars %></p>
+        </div>
+        <% end  %>
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <% @book.reviews.each do |review|%>
-      <div>
-        <h1><%= review.title %></h1>
-        <p><%= review.content %></p>
-        <p><%= review.stars %></p>
-      </div>
-      <% end  %>
-    </div>
-
-    <div class="map-container col-sm">
-      <div id="map"
-        style="width: 100%; height: 100%;"
-        data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
-
   </div>
 </div>
