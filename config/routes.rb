@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews, except: [:destroy]
   end
+  resources :swaps, only: [:update]
   resources :user_book_relationships do
     resources :swaps, only: [:new, :create]
   end
