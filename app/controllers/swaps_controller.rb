@@ -15,7 +15,7 @@ class SwapsController < ApplicationController
     )
 
     if @swap.save
-      redirect_to dashboard_path
+      redirect_to current_user_swaps_path
     else
       render :new
     end
