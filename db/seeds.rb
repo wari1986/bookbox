@@ -98,8 +98,7 @@ isbns.each do |isbn|
         user: user,
         book: book,
         swapper: swapper,
-        swapped_book: swapped_book,
-        accepted: true
+        swapped_book: swapped_book
       )
       # next iteration should be something like
 
@@ -125,6 +124,7 @@ isbns.each do |isbn|
     counter += 1
   end
 end
+
 
 puts "New users, books, user-books relationships and swaps created"
 
