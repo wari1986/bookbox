@@ -25,21 +25,6 @@ class SwapsController < ApplicationController
     @swap = Swap.find(params[:id])
     @swap.accepted = true
     @swap.save
-    update_user_book_relationship(@swap.swapper, @swap.swapped_book)
-    update_user_book_relationship(@swap.user, @swap.book)
-    @new_user_book_relationship_swapper = UserBookRelationship.new(
-      user: @swap.swapper,
-      book: @swap.book,
-      owned: true
-    )
-    @new_user_book_relationship_swapper.save
-    @new_user_book_relationship_owner = UserBookRelationship.new(
-      user: @swap.user,
-      book: @swap.swapped_book,
-      owned: true
-    )
-    @new_user_book_relationship_owner.save
-    redirect_to book_path(@swap.swapped_book_id)
     redirect_to book_path(@swap.swapped_book_id)
   end
 
