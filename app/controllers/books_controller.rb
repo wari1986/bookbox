@@ -4,7 +4,7 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    @markers = @book.geocoded.map do |book|
+    @markers = @books.geocoded.map do |book|
       {
         lat: book.latitude,
         lng: book.longitude
