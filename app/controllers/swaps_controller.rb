@@ -8,15 +8,14 @@ class SwapsController < ApplicationController
   def create
     @user_book_relationship = UserBookRelationship.find(params[:user_book_relationship_id])
     @swap = Swap.new(
-      swapper: current_user,
-      user: @user_book_relationship.user,
+      user: current_user,
+      swapper: @user_book_relationship.user,
       book: @user_book_relationship.book,
-      swapped_book: Book.find(params[:swap][:swapped_book_id]),
-      accepted: false
+      swapped_book: Book.find(params[:swap][:swapped_book_id])
     )
 
     if @swap.save
-      redirect_to dashboard_path
+      redirect_to current_user_swaps_path
     else
       render :new
     end
@@ -35,7 +34,6 @@ class SwapsController < ApplicationController
     @swap.save
     redirect_to dashboard_path
   end
-
 
   def confirm
     update_user_book_relationship(@swap.swapper, @swap.swapped_book)
