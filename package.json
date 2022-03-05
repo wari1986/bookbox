@@ -9,6 +9,7 @@
     "autoprefixer": "9",
     "bootstrap": "4.6",
     "jquery": "^3.6.0",
+    "mapbox-gl": "^2.7.0",
     "popper.js": "^1.16.1",
     "postcss": "7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",

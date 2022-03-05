@@ -4,14 +4,14 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    # @markers = [{
-      #   lat: @book.latitude,
-      #   lng: @book.longitude
-    # }]
+    @markers = @books.geocoded.map do |book|
+      {
+        lat: book.latitude,
+        lng: book.longitude
+      }
+    end
     if params[:query].present?
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
-    else
-      @books = Book.all
     end
   end
 
