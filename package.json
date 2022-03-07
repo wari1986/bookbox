@@ -2,6 +2,7 @@
   "name": "bookbox",
   "private": true,
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^4.7.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -10,6 +11,7 @@
     "bootstrap": "4.6",
     "jquery": "^3.6.0",
     "mapbox-gl": "^2.7.0",
+    "places.js": "^1.19.0",
     "popper.js": "^1.16.1",
     "postcss": "7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
