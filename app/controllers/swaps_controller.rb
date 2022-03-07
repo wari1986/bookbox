@@ -1,17 +1,17 @@
 class SwapsController < ApplicationController
   def new
     @swap = Swap.new
-    @user_book_relationship = UserBookRelationship.find(params[:user_book_relationship_id])
+    @book = Book.find(params[:book_id])
     @mybooks = UserBookRelationship.where(user: current_user, owned: true).map { |user_book_relationship| user_book_relationship.book}
   end
 
   def create
-    @user_book_relationship = UserBookRelationship.find(params[:user_book_relationship_id])
+    @user_book_relationship = UserBookRelationship.find_by(book: params[:book_id], owned: true)
     @swap = Swap.new(
       user: @user_book_relationship.user,
       swapper: current_user,
       book: @user_book_relationship.book,
-      swapped_book: Book.find(params[:swap][:swapped_book_id])
+      swapped_book: Book.find(params[:swap][:book_id])
     )
 
     if @swap.save
