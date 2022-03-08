@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :user_book_relationships do
     resources :swaps, only: [:new, :create]
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :reviews, only: [:destroy]
   namespace :current_user do
     resources :swaps, only: [:index]
