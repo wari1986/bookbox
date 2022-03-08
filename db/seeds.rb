@@ -18,15 +18,10 @@ brussels_addresses = ["1 Boulevard Adolphe Max, Bruxelles", "1 Rue d'Aerschot, B
 
 # creating users
 all_users = []
-<<<<<<< HEAD
 
 5.times do |n|
   lorem_face = (1..6750).to_a.sample
   user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name, profile_picture: "https://faces-img.xcdn.link/image-lorem-face-#{lorem_face}.jpg")
-=======
-2.times do |n|
-  user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name)
->>>>>>> master
   all_users << user
 end
 p all_users
