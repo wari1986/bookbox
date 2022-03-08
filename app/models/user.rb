@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :user_book_relationships
   has_many :books, through: :user_book_relationships
-  has_many :requested_swaps, class_name: 'Swap', foreign_key: :user_id
-  has_many :incoming_swaps, class_name: 'Swap', foreign_key: :swapper_id
+  has_many :incoming_swaps, class_name: 'Swap', foreign_key: :user_id
+  has_many :requested_swaps, class_name: 'Swap', foreign_key: :swapper_id
 end
