@@ -6,8 +6,8 @@
     </div>
 
     <div class="card-body ">
-      <%= simple_form_for([@user_book_relationship, @swap]) do |f| %>
-        <%= f.input :swapped_book_id, collection: @mybooks %>
+      <%= simple_form_for([@book, @swap]) do |f| %>
+        <%= f.input :book_id, collection: @mybooks %>
         <%= f.submit "Send" %>
       <% end %>
     </div>

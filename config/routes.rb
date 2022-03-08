@@ -3,15 +3,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :books do
     resources :reviews, except: [:destroy]
-  end
-  resources :swaps, only: [:update]
-  resources :user_book_relationships do
     resources :swaps, only: [:new, :create]
   end
-  resources :users, only: [:show, :index]
+  resources :swaps, only: [:update]
+  resources :user_book_relationships
+  resources :users, only: [:show]
   resources :reviews, only: [:destroy]
   namespace :current_user do
-    resources :swaps, only: [:index]
+    resources :swaps, only: [:index, :update]
   end
   get "/dashboard", to: "pages#dashboard"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

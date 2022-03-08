@@ -18,10 +18,15 @@ brussels_addresses = ["1 Boulevard Adolphe Max, Bruxelles", "1 Rue d'Aerschot, B
 
 # creating users
 all_users = []
+<<<<<<< HEAD
 
 5.times do |n|
   lorem_face = (1..6750).to_a.sample
   user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name, profile_picture: "https://faces-img.xcdn.link/image-lorem-face-#{lorem_face}.jpg")
+=======
+2.times do |n|
+  user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name)
+>>>>>>> master
   all_users << user
 end
 p all_users
@@ -70,38 +75,39 @@ isbns.each do |isbn|
   end
 
   # creating a random number of total user-book relationships for this specific book
-  total_user_book_relationships = (1..5).to_a.sample
+  # total_user_book_relationships = 1
 
-  # the counter let's us know when we reach the last user-book relationship
-  counter = 1
-  total_user_book_relationships.times do
-    # only for the last user-book relationship is the book currently being owned (owned: true)
-    # for other previous isntances owned: false
-    user = all_users.sample
-    if counter == total_user_book_relationships
-      owned = true
-    else
-      owned = false
-    end
+  # # the counter let's us know when we reach the last user-book relationship
+  # counter = 1
+  # total_user_book_relationships.times do
+  #   # only for the last user-book relationship is the book currently being owned (owned: true)
+  #   # for other previous isntances owned: false
+  #   user = all_users.sample
+  #   if counter == total_user_book_relationships
+  #     owned = true
+  #   else
+  #     owned = false
+  #   end
     # TO DO, from the second iteration, user should be swapper, then swapper_2, etc.)
+    user = all_users.sample
     user_book_relationship = UserBookRelationship.new(
       user: user,
       book: book,
-      owned: owned
+      owned: true
     )
     user_book_relationship.save
     # owned = false means that the book has previously been swapped, therefore we are seeding swaps only if owned == false
-    swapper = User.order(Arel.sql('RANDOM()')).first
-    if user_book_relationship.owned == false
-      # TO DO this needs to be fixed, as we don't know if this book is currently owned or not
-      # TO DO swapper should become user in the next iteration, and so on, which is not the case
-      swapped_book = swapper.books.sample
-      swap = Swap.new(
-        user: user,
-        book: book,
-        swapper: swapper,
-        swapped_book: swapped_book
-      )
+    # swapper = User.order(Arel.sql('RANDOM()')).first
+    # if user_book_relationship.owned == false
+    #   # TO DO this needs to be fixed, as we don't know if this book is currently owned or not
+    #   # TO DO swapper should become user in the next iteration, and so on, which is not the case
+    #   swapped_book = swapper.books.sample
+    #   swap = Swap.new(
+    #     user: current_user,
+    #     book: book,
+    #     swapper: swapper,
+    #     swapped_book: swapped_book
+      # )
       # next iteration should be something like
 
       # swap = Swap.new(
@@ -119,13 +125,11 @@ isbns.each do |isbn|
       #   swapper: swapper_3,
       #   swapped_book: swapped_book,
       #   accepted: true
-      swap.save
-    end
+    #   swap.save
     p user_book_relationship
-    p swap
-    counter += 1
+    # p swap
+    # counter += 1
   end
-end
 
 
 puts "New users, books, user-books relationships and swaps created"
