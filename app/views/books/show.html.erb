@@ -24,7 +24,7 @@
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
-              <h5 class='text-gray-500 m-2 px-4'><%= Geocoder::Calculations.distance_between([@user_book_relationship.latitude, @user_book_relationship.longitude], [@current_user_book_relationship.latitude,@current_user_book_relationship.longitude]).round %> km</h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= @distance %> km</h5>
             </div>
           </div>
           <div class='w-1/2 flex'>

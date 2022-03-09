@@ -15,17 +15,17 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
-    @current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
+    user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
     @swap = Swap.new
     @review = @book.reviews.build
 
     @markers = [
       {
-        lat: @user_book_relationship.latitude,
-        lng: @user_book_relationship.longitude
+        lat: user_book_relationship.latitude,
+        lng: user_book_relationship.longitude
       }]
     # @renting = Renting.new
+    @distance = distance
   end
 
   def new
@@ -75,6 +75,12 @@ class BooksController < ApplicationController
   # end
 
   private
+
+  def distance
+    current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
+    user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
+  end
 
   def book_params
     params.require(:book).permit(:isbn, :condition, :displayed)
