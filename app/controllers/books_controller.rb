@@ -6,10 +6,6 @@ class BooksController < ApplicationController
     rels = current_user.user_book_relationships
     my_books = Book.where(id: rels.where(owned: true).select(:book_id))
     @books = Book.all - my_books
-    # @markers = [{
-      #   lat: @book.latitude,
-      #   lng: @book.longitude
-    # }]
     if params[:query].present?
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
     else
@@ -22,6 +18,12 @@ class BooksController < ApplicationController
     @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
     @swap = Swap.new
     @review = @book.reviews.build
+
+    @markers = [
+      {
+        lat: @user_book_relationship.latitude,
+        lng: @user_book_relationship.longitude
+      }]
     # @renting = Renting.new
   end
 
@@ -52,14 +54,14 @@ class BooksController < ApplicationController
       user_book_relationship = UserBookRelationship.new(
         owned: true,
         user: current_user,
-        book: @book
+        book: @book,
+        address: current_user.address
       )
       user_book_relationship.save
       redirect_to book_path(@book)
     else
       render :new
     end
-
   end
 
   # def create_relationship
