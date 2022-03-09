@@ -11,6 +11,7 @@ class BooksController < ApplicationController
     else
       @books
     end
+    @index_distances = index_distances
   end
 
   def show
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
         lng: user_book_relationship.longitude
       }]
     # @renting = Renting.new
-    @distance = distance
+    @distance = distance(@book)
   end
 
   def new
@@ -76,10 +77,21 @@ class BooksController < ApplicationController
 
   private
 
-  def distance
+  def distance(book)
     current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
-    user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
     Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
+  end
+
+  def index_distances
+    distances = []
+    @books.each do |book|
+      current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
+      user_book_relationship2 = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
+       distance = Geocoder::Calculations.distance_between([user_book_relationship2.latitude, user_book_relationship2.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
+      distances << distance
+    end
+    distances
   end
 
   def book_params
