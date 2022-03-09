@@ -16,6 +16,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    @current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
     @swap = Swap.new
     @review = @book.reviews.build
 
