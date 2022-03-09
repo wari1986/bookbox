@@ -39,7 +39,6 @@ isbns.each do |isbn|
   book_detail = book_hash["items"][0]["volumeInfo"]
   book = Book.new(
     condition: ["Used", "Good condition", "As new", "New"].sample,
-    location: brussels_addresses.sample,
     title: book_detail["title"],
     author: book_detail["authors"].first,
     category: book_detail["categories"][0],
@@ -88,7 +87,8 @@ isbns.each do |isbn|
     user_book_relationship = UserBookRelationship.new(
       user: user,
       book: book,
-      owned: true
+      owned: true,
+      address: user.address
     )
     user_book_relationship.save
     # owned = false means that the book has previously been swapped, therefore we are seeding swaps only if owned == false

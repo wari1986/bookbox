@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   namespace :current_user do
     resources :swaps, only: [:index, :update]
   end
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
   get "/dashboard", to: "pages#dashboard"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
