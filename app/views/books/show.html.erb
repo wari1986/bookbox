@@ -24,6 +24,7 @@
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= Geocoder::Calculations.distance_between([48.8584,2.2945], [50.8949,4.3416]) %></h5>
             </div>
           </div>
           <div class='w-1/2 flex'>
