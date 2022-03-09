@@ -23,13 +23,15 @@ class CurrentUser::SwapsController < ApplicationController
     @new_user_book_relationship_swapper = UserBookRelationship.new(
       user: @swap.swapper,
       book: @swap.book,
-      owned: true
+      owned: true,
+      address: @swap.swapper.address
     )
     @new_user_book_relationship_swapper.save
     @new_user_book_relationship_owner = UserBookRelationship.new(
       user: @swap.user,
       book: @swap.swapped_book,
-      owned: true
+      owned: true,
+      address: @swap.user.address
     )
     @new_user_book_relationship_owner.save
     @swap.save
