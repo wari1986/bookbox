@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :books do
-    resources :reviews, except: [:destroy]
+    resources :reviews, except: [:destroy, :update, :edit]
     resources :swaps, only: [:new, :create]
   end
   resources :swaps, only: [:update]

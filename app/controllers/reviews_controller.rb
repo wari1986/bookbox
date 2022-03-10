@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  # before_action :set_book
 
   def new
     @book = Book.find(params[:book_id])
@@ -17,6 +16,13 @@ class ReviewsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @book = @review.book
+    @review.destroy
+    redirect_to book_path(@book)
   end
 
   private
