@@ -4,8 +4,9 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     rels = current_user.user_book_relationships
-    my_books = Book.where(id: rels.where(owned: true).select(:book_id))
-    @books = Book.all - my_books
+    # my_books = Book.where(id: rels.where(owned: true).select(:book_id))
+    hiddenbooks = Book.where(displayed: false)
+    @books = Book.all - hiddenbooks
     if params[:query].present?
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
     else
@@ -66,14 +67,18 @@ class BooksController < ApplicationController
     end
   end
 
-  # def create_relationship
-  #   @create_deal = user_book_relationship = UserBookRelationship.new(
-  #     user: user,
-  #     book: book,
-  #     owned: owned
-  #   )
-  #   user_book_relationship.save
-  # end
+  def update
+    @book = Book.find(params[:id])
+    @book.displayed = false
+    @book.save
+    redirect_to books_path
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to dashboard_path
+  end
 
   private
 
