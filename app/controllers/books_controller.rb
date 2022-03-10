@@ -87,9 +87,11 @@ class BooksController < ApplicationController
     distances = []
     @books.each do |book|
       current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
-      user_book_relationship2 = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
-       distance = Geocoder::Calculations.distance_between([user_book_relationship2.latitude, user_book_relationship2.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
-      distances << distance
+      unless current_user.user_book_relationships == []
+        user_book_relationship2 = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
+        distance = Geocoder::Calculations.distance_between([user_book_relationship2.latitude, user_book_relationship2.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
+        distances << distance
+      end
     end
     distances
   end

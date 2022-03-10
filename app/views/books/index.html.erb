@@ -43,7 +43,9 @@
             <h1 class="text-2xl bold-700"><%=link_to book.title, book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
             <h2 class="text-gray-600 py-4"><%=book.description.truncate_words(25) %></h2>
+            <% unless current_user.user_book_relationships == [] %>
             <h2 class="text-gray-600 py-4"> <%= @index_distances[index] %> km</h2>
+            <% end %>
             <button class="w-full m-8 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600" id="create_button"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
 
 
