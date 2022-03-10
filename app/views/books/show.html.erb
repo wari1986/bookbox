@@ -53,7 +53,7 @@
         <h2 class='text-3xl py-8 text-center'>What do you think of this book?</h2>
         <div class=" m-16 ">
           <div class="w-full">
-            <%= simple_form_for(@review, url: book_reviews_path(@book), method: :post ) do |f| %>
+            <%= simple_form_for([@book, @review]) do |f| %>
               <%= f.input :title %>
               <%= f.input :content%>
               <%= f.input :stars %>

@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
     @swap = Swap.new
-    @review = @book.reviews.build
+    @review = Review.new
 
     @markers = [
       {
