@@ -24,14 +24,15 @@
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
-              <%= link_to " 🗑 ",
-                                  book_path(@book),
-                                  method: :delete,
-                                  data: { confirm: "Are you sure ?" } %>
-              <%= link_to "Edit a book", book_path,
-                                  method: "patch"%>
-
-
+              <% @user_book_relationship = UserBookRelationship.find_by(book: @book, user: current_user, owned: true)%>
+                <% if @user_book_relationship %>
+                <%= link_to " 🗑 ",
+                                    book_path(@book),
+                                    method: :delete,
+                                    data: { confirm: "Are you sure ?" } %>
+                <%= link_to "Edit a book", book_path,
+                                    method: "patch"%>
+              <% end %>
             </div>
           </div>
           <div class='w-1/2 flex'>

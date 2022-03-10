@@ -75,7 +75,8 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to dashboard_path
+      redirect_to dashboard_path
+
   end
 
   private
