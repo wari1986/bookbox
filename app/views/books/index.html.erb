@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div class="flex my-16">
-    <div class="info w-1/4 text-lg bg-white ">
+    <div class="info w-1/4 text-lg bg-white">
       <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
@@ -47,12 +47,9 @@
             <h2 class="text-gray-600 py-4"> <%= @index_distances[index] %> km</h2>
             <% end %>
             <button class="w-full m-8 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600" id="create_button"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
-
-
           </div>
-            <% end %>
         </div>
+        <% end %>
       </div>
     </div>
-  </div>
 </div>
