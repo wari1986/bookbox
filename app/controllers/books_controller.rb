@@ -4,7 +4,7 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     rels = current_user.user_book_relationships
-    my_books = Book.where(id: rels.where(owned: true).select(:book_id))
+    # my_books = Book.where(id: rels.where(owned: true).select(:book_id))
     hiddenbooks = Book.where(displayed: false)
     @books = Book.all - hiddenbooks
     if params[:query].present?
