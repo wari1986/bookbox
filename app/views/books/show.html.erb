@@ -24,6 +24,7 @@
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= @distance %> km</h5>
               <% @user_book_relationship = UserBookRelationship.find_by(book: @book, user: current_user, owned: true)%>
                 <% if @user_book_relationship %>
                 <%= link_to " 🗑 ",
