@@ -4,9 +4,9 @@ require "open-uri"
 class BooksController < ApplicationController
   def index
     rels = current_user.user_book_relationships
-    # my_books = Book.where(id: rels.where(owned: true).select(:book_id))
-    hiddenbooks = Book.where(displayed: false)
-    @books = Book.all - hiddenbooks
+    my_books = Book.where(id: rels.where(owned: true).select(:book_id))
+    hidden_books = Book.where(displayed: false)
+    @books = Book.all - hidden_books - my_books
     if params[:query].present?
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
     else
@@ -17,16 +17,10 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
     @swap = Swap.new
     @review = Review.new
-
-    @markers = [
-      {
-        lat: user_book_relationship.latitude,
-        lng: user_book_relationship.longitude
-      }]
-    # @renting = Renting.new
+    find_previous_owners
+    find_markers
     @distance = distance(@book)
   end
 
@@ -78,10 +72,23 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to dashboard_path
-
   end
 
   private
+
+  def find_markers
+    user_book_relationship = UserBookRelationship.find_by(book: @book, owned: true)
+    @markers = [
+      {
+        lat: user_book_relationship.latitude,
+        lng: user_book_relationship.longitude
+      }]
+  end
+
+  def find_previous_owners
+    previous_owners_ids = UserBookRelationship.where(book: @book, owned: false).pluck(:user_id).to_a
+    @previous_owners = User.find(previous_owners_ids)
+  end
 
   def distance(book)
     current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
