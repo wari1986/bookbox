@@ -24,7 +24,6 @@
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
-              <h5 class='text-gray-500 m-2 px-4'><%= @distance %> km</h5>
               <% @user_book_relationship = UserBookRelationship.find_by(book: @book, user: current_user, owned: true)%>
                 <% if @user_book_relationship %>
                 <%= link_to " 🗑 ",
@@ -55,7 +54,7 @@
         <h2 class='text-3xl py-8 text-center'>What do you think of this book?</h2>
         <div class=" m-16 ">
           <div class="w-full">
-            <%= simple_form_for([@book, @review]) do |f| %>
+            <%= simple_form_for(@review, url: book_reviews_path(@book), method: :post ) do |f| %>
               <%= f.input :title %>
               <%= f.input :content%>
               <%= f.input :stars %>
@@ -67,12 +66,11 @@
       </div>
       <div class='w-1/2 mx-8'>
         <h2 class='text-3xl text-center py-8'>Reviews</h2>
-        <% @book.reviews.each do |review|%>
+        <% @book.reviews.take(2).each do |review|%>
         <div class='mx-16 my-8 px-4 py-2 rounded '>
           <h1 class='bg-gray-200 text-lg py-2 px-4'><%= review.title %></h1>
           <p class='bg-gray-100 py-2 px-4'><%= review.content %></p>
           <p class='py-2 px-4'><%= review.stars %></p>
-          <button><%= link_to "Delete", review_path(review), method:"delete", data: { confirm: "Are you sure?" } %></button>
         </div>
         <% end  %>
         </div>
