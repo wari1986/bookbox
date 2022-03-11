@@ -19,7 +19,7 @@ brussels_addresses = ["1 Boulevard Adolphe Max, Bruxelles", "1 Rue d'Aerschot, B
 # creating users
 all_users = []
 
-8.times do |n|
+3.times do |n|
   lorem_face = (1..6750).to_a.sample
   user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name, profile_picture: "https://faces-img.xcdn.link/image-lorem-face-#{lorem_face}.jpg")
   all_users << user
@@ -29,7 +29,7 @@ p all_users
 # creating book instances and for each book, the previous User-book relationships and swaps that have led to its current "owned" status
 puts "Creating books, swaps and user-book relationships"
 
-isbns = ["9781607109440", "9781684126583", "9781684129959", "9781635574074", "9780735220201", "9781542025607", "9781662915352", "9781620976814", "9780399592553", "9781534441613", "9781250274618", "9781524798642", "9781501160844", "9780735222359", "9781419753961", "9780306923043", "9781538724736", "9781250830449"]
+isbns = ["9781607109440", "9781684126583", "9781684129959"]
 
 # creating instances for each ISBN
 isbns.each do |isbn|
@@ -88,7 +88,7 @@ isbns.each do |isbn|
       user: user,
       book: book,
       owned: true,
-      address: user.address
+      # address: user.address
     )
     user_book_relationship.save
     # owned = false means that the book has previously been swapped, therefore we are seeding swaps only if owned == false
