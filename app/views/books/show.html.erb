@@ -44,9 +44,16 @@
           <button class="bg-indigo-400 text-white mr-8 py-3 px-8 rounded"><%=link_to "Get this book!", new_book_swap_path(@book) %></button>
         </div>
         <div class='mx-auto my-16 p-8 h-32 bg-gray-200 text-center'>
-          <h3>Previous Owners</h3>
+          <h3>Previous owners</h3>
           <div>
             <%# previous owners Avatars (array of owners for this book user relationship) %>
+            <% unless @previous_owners == [] %>
+              <%= @previous_owners.each do |previous_owner| %>
+                <img class="h-8 w-8 rounded-full" src="<%= previous_owner.profile_picture %>"alt="">
+              <% end %>
+            <% else %>
+              <h4>Congrats, you are the first owner of this book! Start swapping with others to create a chain!</h4>
+            <% end %>
           </div>
         </div>
     </div>
