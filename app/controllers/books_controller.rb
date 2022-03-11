@@ -52,7 +52,9 @@ class BooksController < ApplicationController
         owned: true,
         user: current_user,
         book: @book,
-        address: current_user.address
+        address: current_user.address,
+        longitude: current_user.longitude,
+        latitude: current_user.latitude
       )
       user_book_relationship.save
       redirect_to book_path(@book)
@@ -91,20 +93,16 @@ class BooksController < ApplicationController
   end
 
   def distance(book)
-    current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
     user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
-    Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
+    Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
   end
 
   def index_distances
     distances = []
     @books.each do |book|
-      current_user_book_relationship = UserBookRelationship.find_by(user: current_user, owned: true)
-      unless current_user.user_book_relationships == []
-        user_book_relationship2 = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
-        distance = Geocoder::Calculations.distance_between([user_book_relationship2.latitude, user_book_relationship2.longitude], [current_user_book_relationship.latitude,current_user_book_relationship.longitude]).round
-        distances << distance
-      end
+      user_book_relationship = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
+      distance = Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+      distances << distance
     end
     distances
   end
