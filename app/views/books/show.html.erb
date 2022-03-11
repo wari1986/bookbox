@@ -20,19 +20,21 @@
             <%# <h5 class=""><%=@book.average_rating %></h5>
             <%# <h5 class=""><%=@book.distance %></h5>
             <p class='text-justify my-8'><%= @book.description.truncate_words(200) %></p>
-            <div class='grid grid-cols-3 my-4 w-1/2'>
+            <div class='grid grid-cols-4 my-4 w-1/2'>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.language.upcase %></h5>
-              <h5 class='text-gray-500 m-2 px-4'><%= @distance %> km</h5>
+              <h5 class='text-gray-500 m-2 px-4'><%= @book.condition %></h5>
               <% @user_book_relationship = UserBookRelationship.find_by(book: @book, user: current_user, owned: true)%>
-                <% if @user_book_relationship %>
-                <%= link_to " 🗑 ",
-                                    book_path(@book),
-                                    method: :delete,
-                                    data: { confirm: "Are you sure ?" } %>
-                <%= link_to "Edit a book", book_path,
-                                    method: "patch"%>
+                <% unless @user_book_relationship %>
+                  <h5 class='text-gray-500 m-2 px-4'><%= @distance %> km</h5>
+                <% else %>
+                  <%= link_to " 🗑 ",
+                                      book_path(@book),
+                                      method: :delete,
+                                      data: { confirm: "Are you sure ?" } %>
+                  <%= link_to "Edit a book", book_path,
+                                      method: "patch"%>
               <% end %>
             </div>
           </div>
@@ -41,7 +43,9 @@
           </div>
         </div>
         <div class="w-1/2 flex justify-end">
+        <% unless @user_book_relationship %>
           <button class="bg-indigo-400 text-white mr-8 py-3 px-8 rounded"><%=link_to "Get this book!", new_book_swap_path(@book) %></button>
+        <% end %>
         </div>
         <div class='mx-auto my-16 p-8 h-32 bg-gray-200 text-center'>
           <h3>Previous owners</h3>

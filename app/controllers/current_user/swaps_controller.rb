@@ -24,14 +24,18 @@ class CurrentUser::SwapsController < ApplicationController
       user: @swap.swapper,
       book: @swap.book,
       owned: true,
-      address: @swap.swapper.address
+      address: @swap.swapper.address,
+      latitude: @swap.swapper.latitude,
+      longitude: @swap.swapper.longitude
     )
     @new_user_book_relationship_swapper.save
     @new_user_book_relationship_owner = UserBookRelationship.new(
       user: @swap.user,
       book: @swap.swapped_book,
       owned: true,
-      address: @swap.user.address
+      address: @swap.user.address,
+      latitude: @swap.user.latitude,
+      longitude: @swap.user.longitude
     )
     @new_user_book_relationship_owner.save
     @swap.save

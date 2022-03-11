@@ -41,9 +41,11 @@
             <p class="text-lg  mb-3 font-semibold tracking-wide uppercase h-16 "><%=link_to book.title, book_path(book) %></p>
             <%# <p class="text-xl bold"><%=book.average_rating %></p>
             <%# <p class="text-gray-600 py-2 max-h-28 flex flex-wrap md:max-h-8"><%=book.description.truncate_words(25)%></p>
-            <% unless current_user.user_book_relationships == [] %>
-            <p class="text-gray-600 py-2"> <%= @index_distances[index] %> km</p>
-            <% end %>
+            <% if @index_distances[index] > 1 %>
+              <p class="text-gray-600 py-2"> <%= @index_distances[index] %> km</p>
+              <% else %>
+              <p class="text-gray-600 py-2"> < 1 km</p>
+              <% end %>
             <button class="w-full m-4 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600 hover:bg-indigo-400 hover:text-white"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
           </div>
         </div>
