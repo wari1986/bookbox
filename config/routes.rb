@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :current_user do
     resources :swaps, only: [:index, :update]
   end
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show, :new, :create] do
     resources :messages, only: :create
   end
   get "/dashboard", to: "pages#dashboard"

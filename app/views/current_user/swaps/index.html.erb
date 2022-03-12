@@ -11,8 +11,8 @@
             <h2 class="text-gray-600"><%= pending_incoming_swap.created_at.strftime("%d %b. %Y") %> at <%=pending_incoming_swap.created_at.strftime("%H:%M") %></h2>
             <h1 class="text-2xl bold-700">Your book: <%= link_to pending_incoming_swap.book.title, book_path(pending_incoming_swap.book) %></h1>
             <h1 class="text-2xl bold-700"><%= pending_incoming_swap.swapper.first_name %>'s book: <%= link_to pending_incoming_swap.swapped_book.title, book_path(pending_incoming_swap.swapped_book) %></h1>
-            <%= link_to "Accept", swap_path(pending_incoming_swap, accepted: true), method: :put %>
-            <%= link_to "Decline", swap_path(pending_incoming_swap, accepted: false), method: :put %>
+            <%= link_to "Accept", swap_path(pending_incoming_swap, accepted: true), data: { confirm: "Congrats, The swap has been confirmed" }, method: :put %>
+            <%= link_to "Decline", swap_path(pending_incoming_swap, accepted: false), data: { confirm: "We will notify the user" }, method: :put %>
           </div>
         </div>
         <% end %>
@@ -46,7 +46,8 @@
             <h2 class="text-gray-600"><%= accepted_swap.updated_at.strftime("%d %b. %Y") %> at <%= accepted_swap.updated_at.strftime("%H:%M") %></h2>
             <h1 class="text-2xl bold-700">Your book: <%= link_to accepted_swap.book.title, book_path(accepted_swap.book) %></h1>
             <h1 class="text-2xl bold-700"><%= accepted_swap.swapper.first_name %>'s book: <%= link_to accepted_swap.swapped_book.title, book_path(accepted_swap.swapped_book) %></h1>
-            <%= link_to "Confirm swap", current_user_swap_path(accepted_swap, confirmed: true), method: :put %>
+            <%= link_to "Confirm swap", current_user_swap_path(accepted_swap, confirmed: true), data: { confirm: "Cool! Now let's chat with the futur book's owner" },method: :put %>
+            <%= link_to "Chat", chatroom_path(accepted_swap.chatroom) %>
           </div>
         </div>
         <% end %>
