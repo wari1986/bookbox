@@ -17,6 +17,11 @@ class BooksController < ApplicationController
       @books
     end
     @index_distances = index_distances
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'books/results', locals: { books: @books }, formats: [:html] }
+    end
   end
 
   def show
