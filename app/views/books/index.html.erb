@@ -1,18 +1,22 @@
-<div class="index-container my-12 mx-auto px-4 md:px-12 bg-white">
+<div data-controller="books" class="index-container my-12 mx-auto px-4 md:px-12 bg-white">
   <div class="w-1/2 mx-auto">
-    <%= form_tag books_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-    class: "form-control",
-    placeholder: "Find a book"
-    %>
-    <%= submit_tag "Search", class: "" %>
+    <%= form_with url: books_path, method: :get, html: { class:
+        'mb-4', data: { books_target: 'form' } } do |f| %>
+      <%= f.text_field :query,
+        class: "form-control",
+        placeholder: 'Find a book',
+        value: params[:query],
+        data: {
+          books_target: 'input',
+          action: 'keyup->books#search'
+        }
+      %>
     <% end %>
   </div>
   <div class="flex my-16">
     <div class="info w-1/5 text-lg bg-white">
       <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
-      <div class="m-8 py-8" data-controller="books">
+      <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
         <ul><% %>
           <li> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
@@ -36,27 +40,7 @@
       </div>
     </div>
     <div class="w-4/5 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20">
-      <div class="grid gap-8 xl:grid-cols-4 mx-0 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full" data-controller="books">
-        <% @books.each_with_index do |book, index| %>
-        <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm border pt-4">
-          <img class='object-cover mx-auto h-64 md:w-2/3' src="<%= book.cover %>" alt="book cover">
-          <div class="px-5 pt-5">
-            <p class="text-sm mb-2 text-gray-700"><%=book.author %></p>
-            <p class="text-lg  mb-3 font-semibold tracking-wide uppercase h-16 "><%=link_to book.title, book_path(book) %></p>
-            <%# <p class="text-xl bold"><%=book.average_rating %></p>
-            <%# <p class="text-gray-600 py-2 max-h-28 flex flex-wrap md:max-h-8"><%=book.description.truncate_words(25)%></p>
-            <% unless current_user.address.nil? %>
-              <% if @index_distances[index] > 1 %>
-                <p class="text-gray-600 py-2"> <%= @index_distances[index] %> km</p>
-                <% else %>
-                <p class="text-gray-600 py-2"> < 1 km</p>
-                <% end %>
-               <% end %>
-            <button class="w-full m-4 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600 hover:bg-indigo-400 hover:text-white"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
-          </div>
-        </div>
-        <% end %>
-      </div>
+      <%= render partial: 'results', locals: { book: @books } %>
     </div>
   </div>
 </div>
