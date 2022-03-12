@@ -14,20 +14,24 @@
       <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
-        <ul>
-          <li>Category Name</li>
-          <li>Category Name</li>
-          <li>Category Name</li>
-          <li>Category Name</li>
+        <ul><% %>
+          <li> <%= link_to "All books", books_path %></li>>
+          <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
+          <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
+          <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
+          <li> <%= link_to "Horror", books_path(category: "B") %> </li>
+          <li> <%= link_to "Comics", books_path(category: "Biography") %> </li>
+          <li> <%= link_to "History", books_path(category: "Biography") %> </li>
         </ul>
       </div>
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Rating</h1>
         <ul>
-          <li>stars</li>
-          <li>stars</li>
-          <li>stars</li>
-          <li>stars</li>
+          <li><%= link_to "5 stars", books_path(credit_worth: "5") %></li>
+          <li><%= link_to "4 stars", books_path(ccredit_worth: "4") %></li>
+          <li><%= link_to "3 stars", books_path(credit_worth: "3") %></li>
+          <li><%= link_to "2 stars", books_path(credit_worth: "2") %></li>
+          <li><%= link_to "1 stars", books_path(credit_worth: "1") %></li>>
         </ul>
       </div>
     </div>
