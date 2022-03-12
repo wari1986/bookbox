@@ -1,12 +1,16 @@
-<div class="index-container my-12 mx-auto px-4 md:px-12 bg-white">
+<div data-controller="books" class="index-container my-12 mx-auto px-4 md:px-12 bg-white">
   <div class="w-1/2 mx-auto">
-    <%= form_tag books_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-    class: "form-control",
-    placeholder: "Find a book"
-    %>
-    <%= submit_tag "Search", class: "" %>
+    <%= form_with url: books_path, method: :get, html: { class:
+        'mb-4', data: { books_target: 'form' } } do |f| %>
+      <%= f.text_field :query,
+        class: "form-control",
+        placeholder: 'Find a book',
+        value: params[:query],
+        data: {
+          books_target: 'input',
+          action: 'keyup->books#search'
+        }
+      %>
     <% end %>
   </div>
   <div class="flex my-16">
@@ -15,7 +19,7 @@
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
         <ul><% %>
-          <li> <%= link_to "All books", books_path %></li>
+          <li> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
           <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
           <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
           <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
@@ -37,6 +41,8 @@
     </div>
 
     <div class="w-4/5 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20">
+
+      <%= render partial: 'results', locals: { book: @books } %>
       <div class="grid gap-8 xl:grid-cols-3 mx-0 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
         <% @books.each_with_index do |book, index| %>
         <div class="flex justify-center">
