@@ -15,7 +15,7 @@
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
         <ul><% %>
-          <li> <%= link_to "All books", books_path %></li>>
+          <li> <%= link_to "All books", books_path %></li>
           <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
           <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
           <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
@@ -31,7 +31,7 @@
           <li><%= link_to "4 stars", books_path(ccredit_worth: "4") %></li>
           <li><%= link_to "3 stars", books_path(credit_worth: "3") %></li>
           <li><%= link_to "2 stars", books_path(credit_worth: "2") %></li>
-          <li><%= link_to "1 stars", books_path(credit_worth: "1") %></li>>
+          <li><%= link_to "1 stars", books_path(credit_worth: "1") %></li>
         </ul>
       </div>
     </div>
