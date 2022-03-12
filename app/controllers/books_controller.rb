@@ -93,18 +93,24 @@ class BooksController < ApplicationController
   end
 
   def distance(book)
-    user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
-    Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+    unless current_user.address.nil?
+      user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
+      Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+    else
+    end
   end
 
   def index_distances
     distances = []
-    @books.each do |book|
-      user_book_relationship = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
-      distance = Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
-      distances << distance
+    unless current_user.address.nil?
+      @books.each do |book|
+        user_book_relationship = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
+        distance = Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+        distances << distance
+      end
+      distances
+    else
     end
-    distances
   end
 
   def book_params
