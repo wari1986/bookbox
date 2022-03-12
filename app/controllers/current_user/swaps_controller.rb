@@ -42,6 +42,8 @@ class CurrentUser::SwapsController < ApplicationController
     redirect_to book_path(@swap.swapped_book_id)
   end
 
+
+
   private
 
   def update_user_book_relationship(swapping_user, swapping_book)

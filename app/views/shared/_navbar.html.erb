@@ -30,17 +30,16 @@
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex-shrink-0 flex items-center">
           <%# <%=link_to "BOOKBOX", root_path, class:"text-white"%>
-            <%= link_to "BOOKBOX", books_path(@book), class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "BOOKBOX", books_path(@book), class: "text-white px-10 py-2 text-3xl font-medium" %>
         </div>
         <div class="hidden sm:block sm:ml-6">
-          <div class="flex space-x-4">
+          <div class="flex space-x-12">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%# <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Bookshelf</a> %>
             <%# <%= link_to "Bookshelf", dashboard_path, class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= link_to "Bookshelf", dashboard_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
-            <%= link_to "Add a book +", new_book_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
-            <%= link_to "About us", root_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
-            <%= link_to "Contact", root_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"%>
+            <%= link_to "Add a book", new_book_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
+            <%= link_to "My bookshelf", dashboard_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
+            <%= link_to "My swaps", current_user_swaps_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
           </div>
         </div>
       </div>

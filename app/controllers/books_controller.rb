@@ -8,7 +8,11 @@ class BooksController < ApplicationController
     hidden_books = Book.where(displayed: false)
     @books = Book.all - hidden_books - my_books
     if params[:query].present?
-      @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
+      @books = Book.where("title ILIKE ?", "%#{params[:query]}%") - hidden_books - my_books
+    elsif  params[:category].present?
+      @books = Book.where("category ILIKE ?", "%#{params[:category]}%") - hidden_books - my_books
+    elsif params[:rating].present?
+      @books = Book.where("category ILIKE ?", "%#{params[:credit_worth]}%") - hidden_books - my_books
     else
       @books
     end
@@ -93,18 +97,24 @@ class BooksController < ApplicationController
   end
 
   def distance(book)
-    user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
-    Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+    unless current_user.address.nil?
+      user_book_relationship = UserBookRelationship.find_by(book: book, owned: true)
+      Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+    else
+    end
   end
 
   def index_distances
     distances = []
-    @books.each do |book|
-      user_book_relationship = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
-      distance = Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
-      distances << distance
+    unless current_user.address.nil?
+      @books.each do |book|
+        user_book_relationship = UserBookRelationship.find_by(book: "#{book.id}", owned: true)
+        distance = Geocoder::Calculations.distance_between([user_book_relationship.latitude, user_book_relationship.longitude], [current_user.latitude,current_user.longitude]).round
+        distances << distance
+      end
+      distances
+    else
     end
-    distances
   end
 
   def book_params

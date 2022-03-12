@@ -14,20 +14,24 @@
       <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Categories</h1>
-        <ul>
-          <li>Category Name</li>
-          <li>Category Name</li>
-          <li>Category Name</li>
-          <li>Category Name</li>
+        <ul><% %>
+          <li> <%= link_to "All books", books_path %></li>
+          <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
+          <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
+          <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
+          <li> <%= link_to "Horror", books_path(category: "B") %> </li>
+          <li> <%= link_to "Comics", books_path(category: "Biography") %> </li>
+          <li> <%= link_to "History", books_path(category: "Biography") %> </li>
         </ul>
       </div>
       <div class="m-8 py-8">
         <h1 class='text-xl my-4'>Rating</h1>
         <ul>
-          <li>stars</li>
-          <li>stars</li>
-          <li>stars</li>
-          <li>stars</li>
+          <li><%= link_to "5 stars", books_path(credit_worth: "5") %></li>
+          <li><%= link_to "4 stars", books_path(ccredit_worth: "4") %></li>
+          <li><%= link_to "3 stars", books_path(credit_worth: "3") %></li>
+          <li><%= link_to "2 stars", books_path(credit_worth: "2") %></li>
+          <li><%= link_to "1 stars", books_path(credit_worth: "1") %></li>
         </ul>
       </div>
     </div>
@@ -41,11 +45,13 @@
             <p class="text-lg  mb-3 font-semibold tracking-wide uppercase h-16 "><%=link_to book.title, book_path(book) %></p>
             <%# <p class="text-xl bold"><%=book.average_rating %></p>
             <%# <p class="text-gray-600 py-2 max-h-28 flex flex-wrap md:max-h-8"><%=book.description.truncate_words(25)%></p>
-            <% if @index_distances[index] > 1 %>
-              <p class="text-gray-600 py-2"> <%= @index_distances[index] %> km</p>
-              <% else %>
-              <p class="text-gray-600 py-2"> < 1 km</p>
-              <% end %>
+            <% unless current_user.address.nil? %>
+              <% if @index_distances[index] > 1 %>
+                <p class="text-gray-600 py-2"> <%= @index_distances[index] %> km</p>
+                <% else %>
+                <p class="text-gray-600 py-2"> < 1 km</p>
+                <% end %>
+               <% end %>
             <button class="w-full m-4 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600 hover:bg-indigo-400 hover:text-white"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
           </div>
         </div>
