@@ -13,8 +13,8 @@ class SwapsController < ApplicationController
       book: @user_book_relationship.book,
       swapped_book: Book.find(params[:swap][:book_id])
     )
-    @swap.chatroom.create
     if @swap.save
+      Chatroom.create(swap: @swap)
       redirect_to current_user_swaps_path
     else
       render :new
