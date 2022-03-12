@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_11_192325) do
+ActiveRecord::Schema.define(version: 2022_03_12_112321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2022_03_11_192325) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "swap_id"
+    t.index ["swap_id"], name: "index_chatrooms_on_swap_id"
   end
 
   create_table "messages", force: :cascade do |t|
