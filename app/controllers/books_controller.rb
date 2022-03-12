@@ -8,7 +8,11 @@ class BooksController < ApplicationController
     hidden_books = Book.where(displayed: false)
     @books = Book.all - hidden_books - my_books
     if params[:query].present?
-      @books = Book.where("title ILIKE ?", "%#{params[:query]}%")
+      @books = Book.where("title ILIKE ?", "%#{params[:query]}%") - hidden_books - my_books
+    elsif  params[:category].present?
+      @books = Book.where("category ILIKE ?", "%#{params[:category]}%") - hidden_books - my_books
+    elsif params[:rating].present?
+      @books = Book.where("category ILIKE ?", "%#{params[:credit_worth]}%") - hidden_books - my_books
     else
       @books
     end
