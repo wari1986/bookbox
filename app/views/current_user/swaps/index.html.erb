@@ -1,5 +1,57 @@
 <div class="container my-16 w-full">
   <h2 class="text-2xl">Received swaps pending (<%= @pending_incoming_swaps_count %>)</h2>
+  <%# <div class="container my-8 w-full">
+      <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
+        <% @pending_incoming_swaps.each do |pending_incoming_swap| %>
+        <h2 class="text-gray-600"><%= pending_incoming_swap.created_at.strftime("%d %b. %Y") %> at <%=pending_incoming_swap.created_at.strftime("%H:%M") %></h2>
+            <h1 class="text-2xl bold-700">Your book: <%= link_to pending_incoming_swap.book.title, book_path(pending_incoming_swap.book) %></h1>
+            <h1 class="text-2xl bold-700"><%= pending_incoming_swap.swapper.first_name %>'s book: <%= link_to pending_incoming_swap.swapped_book.title, book_path(pending_incoming_swap.swapped_book) %></h1>
+            <%= link_to "Accept", swap_path(pending_incoming_swap, accepted: true), data: { confirm: "Congrats, The swap has been confirmed" }, method: :put %>
+            <%= link_to "Decline", swap_path(pending_incoming_swap, accepted: false), data: { confirm: "We will notify the user" }, method: :put %>
+        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+          <div class="md:mt-8 flex flex-wrap blue-box relative text-lg p-4" style="cursor: auto;">
+            <blockquote class="w-full sm:w-1/2 p-6" style="cursor: auto;">
+              <div class="mb-4">
+                <img srcset="<%= pending_incoming_swap.book.cover %>" src="" alt="Company Logo">
+              </div>
+              <p class="mb-4">
+                <span class="text-primary-900">"</span> <%= pending_incoming_swap.book.title %>
+                <span class="text-primary-900">"</span>
+              </p>
+              <div class="flex items-center">
+                <img alt="John Doe" class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= pending_incoming_swap.swapper.profile_picture %>>
+                <div class="flex flex-col items-start">
+                  <span class="mb-1 text-sm font-bold">Your book</span>
+                </div>
+              </div>
+            </blockquote>
+            <blockquote class="w-full sm:w-1/2 p-6" style="cursor: auto;">
+              <div class="mb-4 mt-1">
+                <img srcset="" src="<%= pending_incoming_swap.swapped_book.cover  %>" alt="Company Logo">
+              </div>
+              <p class="mb-4">
+                <span class="text-primary-900"></span> <%= pending_incoming_swap.swapped_book.title %>
+                <span class="text-primary-900"></span>
+              </p>
+              <div class="flex items-center">
+                <img alt="John Doe" class="w-12 mr-4 rounded-full bg-neutral-500" srcset="" src="https://stackdiary.com/140x100.png">
+                <div class="flex flex-col items-start">
+                  <span class="mb-1 text-sm font-bold">John Doe</span>
+                  <a href="https://stackdiary.com/" target="_blank" rel="noopener noreferrer nofollow" class="text-sm"> Google </a>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          </div>
+          </div>
+        <% end %>
+      <%# </div>
+    </div> %>
+
+
+
+<div class="container my-16 w-full">
+  <h2 class="text-2xl">Received swaps pending (<%= @pending_incoming_swaps_count %>)</h2>
   <div class="container my-8 w-full">
       <div class="grid grid-cols-3 gap-4 md:grid-cols-2">
         <% @pending_incoming_swaps.each do |pending_incoming_swap| %>
