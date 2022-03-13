@@ -12,11 +12,10 @@
                       <img class="h-56 rounded-md" srcset="<%= pending_incoming_swap.book.cover %>" src="" alt="book cover">
                     </div>
                     <p class="mb-4">
-                      <span class="text-primary-900"></span> <%= pending_incoming_swap.book.title.truncate(18) %>
-                      <span class="text-primary-900"></span>
+                      <span class="text-primary-900"><%= pending_incoming_swap.book.title.truncate(17) %></span>
                     </p>
                     <div class="flex items-center">
-                      <img class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= pending_incoming_swap.user.profile_picture %>>
+                      <img class="w-10 mr-4 rounded-full bg-neutral-500" src= <%= pending_incoming_swap.user.profile_picture %>>
                       <div class="flex flex-col items-start">
                         <span class="mb-1 text-sm font-bold">Your book</span>
                       </div>
@@ -29,11 +28,11 @@
                       <% end %>
                     </div>
                     <p class="mb-4">
-                      <span class="text-primary-900"></span> <%= pending_incoming_swap.swapped_book.title.truncate(18) %>
+                      <span class="text-primary-900"><%= pending_incoming_swap.swapped_book.title.truncate(17) %></span>
                     </p>
                     <div class="flex items-center">
                       <%= link_to user_path(pending_incoming_swap.swapper_id) do %>
-                        <%= image_tag pending_incoming_swap.swapper.profile_picture, class: "w-12 mr-4 rounded-full bg-neutral-500" %>
+                        <%= image_tag pending_incoming_swap.swapper.profile_picture, class: "w-10 mr-4 rounded-full bg-neutral-500" %>
                       <% end %>
                       <div class="flex flex-col items-start">
                         <span class="mb-1 text-sm font-bold"><%= pending_incoming_swap.swapper.first_name %>'s book</span>
@@ -78,10 +77,10 @@
                       <img class="h-56 rounded-md" srcset="<%= pending_requested_swap.swapped_book.cover %>" src="" alt="book cover">
                     </div>
                     <p class="mb-4">
-                      <span class="text-primary-900"></span> <%= pending_requested_swap.swapped_book.title.truncate(18) %>
-                      <span class="text-primary-900"></span>
+                      <span class="text-primary-900"><%= pending_requested_swap.swapped_book.title.truncate(17) %></span>
+
                     </p>
-                    <div class="flex items-center"> <img class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= pending_requested_swap.swapper.profile_picture %>>
+                    <div class="flex items-center"> <img class="w-10 mr-4 rounded-full bg-neutral-500" src= <%= pending_requested_swap.swapper.profile_picture %>>
                       <div class="flex flex-col items-start">
                         <span class="mb-1 text-sm font-bold">Your book</span>
                       </div>
@@ -94,11 +93,11 @@
                       <% end %>
                     </div>
                     <p class="mb-4">
-                      <span class="text-primary-900"></span> <%= pending_requested_swap.book.title.truncate(18) %>
+                      <span class="text-primary-900"></span> <%= pending_requested_swap.book.title.truncate(17) %>
                     </p>
                     <div class="flex items-center">
                       <%= link_to user_path(pending_requested_swap.user_id) do %>
-                        <%= image_tag pending_requested_swap.user.profile_picture, class:"w-12 mr-4 rounded-full bg-neutral-500" %>
+                        <%= image_tag pending_requested_swap.user.profile_picture, class:"w-10 mr-4 rounded-full bg-neutral-500" %>
                       <% end %>
                       <div class="flex flex-col items-start">
                         <span class="mb-1 text-sm font-bold"><%= pending_requested_swap.user.first_name %>'s book</span>
@@ -135,10 +134,10 @@
                         <img class="h-56 rounded-md" srcset="<%= accepted_swap.swapped_book.cover %>" src="" alt="book cover">
                       </div>
                       <p class="mb-4">
-                        <span class="text-primary-900"></span> <%= accepted_swap.swapped_book.title.truncate(18) %>
+                        <span class="text-primary-900"></span> <%= accepted_swap.swapped_book.title.truncate(17) %>
                         <span class="text-primary-900"></span>
                       </p>
-                      <div class="flex items-center"> <img class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= accepted_swap.swapper.profile_picture %>>
+                      <div class="flex items-center"> <img class="w-10 mr-4 rounded-full bg-neutral-500" src= <%= accepted_swap.swapper.profile_picture %>>
                         <div class="flex flex-col items-start">
                           <span class="mb-1 text-sm font-bold">Your book</span>
                         </div>
@@ -151,11 +150,11 @@
                       <% end %>
                       </div>
                       <p class="mb-4">
-                        <span class="text-primary-900"></span> <%= accepted_swap.book.title.truncate(18) %>
+                        <span class="text-primary-900"></span> <%= accepted_swap.book.title.truncate(17) %>
                       </p>
                       <div class="flex items-center">
                       <%= link_to user_path(accepted_swap.user_id) do %>
-                        <%= image_tag accepted_swap.user.profile_picture, class:"w-12 mr-4 rounded-full bg-neutral-500" %>
+                        <%= image_tag accepted_swap.user.profile_picture, class:"w-10 mr-4 rounded-full bg-neutral-500" %>
                       <% end %>
                         <div class="flex flex-col items-start">
                           <span class="mb-1 text-sm font-bold"><%= accepted_swap.user.first_name %>'s book</span>
@@ -186,10 +185,10 @@
                         <img class="h-56 rounded-md" srcset="<%= accepted_swap.book.cover %>" src="" alt="book cover">
                       </div>
                       <p class="mb-4">
-                        <span class="text-primary-900"></span> <%= accepted_swap.book.title.truncate(18) %>
+                        <span class="text-primary-900"></span> <%= accepted_swap.book.title.truncate(17) %>
                         <span class="text-primary-900"></span>
                       </p>
-                      <div class="flex items-center"> <img class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= accepted_swap.user.profile_picture %>>
+                      <div class="flex items-center"> <img class="w-10 mr-4 rounded-full bg-neutral-500" src= <%= accepted_swap.user.profile_picture %>>
                         <div class="flex flex-col items-start">
                           <span class="mb-1 text-sm font-bold">Your book</span>
                         </div>
@@ -202,11 +201,11 @@
                       <% end %>
                       </div>
                       <p class="mb-4">
-                        <span class="text-primary-900"></span> <%= accepted_swap.swapped_book.title.truncate(18) %>
+                        <span class="text-primary-900"></span> <%= accepted_swap.swapped_book.title.truncate(17) %>
                       </p>
                       <div class="flex items-center">
                       <%= link_to user_path(accepted_swap.swapper_id) do %>
-                        <%= image_tag accepted_swap.swapper.profile_picture, class:"w-12 mr-4 rounded-full bg-neutral-500" %>
+                        <%= image_tag accepted_swap.swapper.profile_picture, class:"w-10 mr-4 rounded-full bg-neutral-500" %>
                       <% end %>
                         <div class="flex flex-col items-start">
                           <span class="mb-1 text-sm font-bold"><%= accepted_swap.swapper.first_name %>'s book</span>
