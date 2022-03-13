@@ -1,4 +1,3 @@
-<div class="flex justify-center">
   <h2 class="text-2xl">Received swaps pending (<%= @pending_incoming_swaps_count %>)</h2>
 
    <%# <div class="container my-8 w-full"> %>
@@ -27,7 +26,7 @@
                       <img class="h-56 rounded-md" srcset="" src="<%= pending_incoming_swap.swapped_book.cover  %>" alt="book cover">
                     </div>
                     <p class="mb-4">
-                      <span class="text-primary-900"></span> <%= pending_incoming_swap.swapped_book.title.truncate(55) %>
+                      <span class="text-primary-900"></span> <%= pending_incoming_swap.swapped_book.title.truncate(25) %>
                     </p>
                     <div class="flex items-center"> <img  class="w-12 mr-4 rounded-full bg-neutral-500" srcset="" src=<%= pending_incoming_swap.swapper.profile_picture %>>
                       <div class="flex flex-col items-start">
@@ -58,6 +57,56 @@
         </div>
 </div>
 
+
+ <h2 class="text-2xl">Sent swaps pending (<%= @pending_requested_swaps_count %>)</h2>
+
+   <%# <div class="container my-8 w-full"> %>
+      <%# <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
+        <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+          <div class="inline-block px-3">
+            <div> <% @pending_requested_swaps.each do |pending_requested_swap| %>
+              <div class="md:mt-8 flex flex-wrap blue-box relative text-lg p-4" style="cursor: auto;">
+                <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+                  <blockquote class="w-full sm:w-3/5 p-4" style="cursor: auto;">
+                    <div class="flex justify-center mb-4 mt-1">
+                      <img class="h-56 rounded-md" srcset="<%= pending_requested_swap.swapped_book.cover %>" src="" alt="book cover">
+                    </div>
+                    <p class="mb-4">
+                      <span class="text-primary-900"></span> <%= pending_requested_swap.swapped_book.title.truncate(18) %>
+                      <span class="text-primary-900"></span>
+                    </p>
+                    <div class="flex items-center"> <img class="w-12 mr-4 rounded-full bg-neutral-500" src= <%= pending_requested_swap.swapper.profile_picture %>>
+                      <div class="flex flex-col items-start">
+                        <span class="mb-1 text-sm font-bold">Your book</span>
+                      </div>
+                    </div>
+                  </blockquote>
+                  <blockquote class="w-full sm:w-3/5 p-4" style="cursor: auto;">
+                    <div class="flex justify-center mb-4 mt-1">
+                      <img class="h-56 rounded-md" srcset="" src="<%= pending_requested_swap.book.cover  %>" alt="book cover">
+                    </div>
+                    <p class="mb-4">
+                      <span class="text-primary-900"></span> <%= pending_requested_swap.book.title.truncate(18) %>
+                    </p>
+                    <div class="flex items-center"> <img  class="w-12 mr-4 rounded-full bg-neutral-500" srcset="" src=<%= pending_requested_swap.user.profile_picture %>>
+                      <div class="flex flex-col items-start">
+                        <span class="mb-1 text-sm font-bold"><%= pending_requested_swap.user.first_name %>'s book</span>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            <div class="flex space-x-2 justify-center">
+              <button
+                class="inline-block px-6 py-2.5 mb-2 bg-yellow-400 text-white shadow-lg font-medium text-xs leading-tight uppercase rounded shadow-md"> Pending
+              </button>
+            </div>
+            <% end %>
+          </div>
+          </div>
+          </div>
+        </div>
+</div>
 <style>
 .hide-scroll-bar {
   -ms-overflow-style: none;
