@@ -1,11 +1,36 @@
-<div class="w-1/3 mx-auto min-h-96">
-    <h1 class='text-3xl text-center my-8 align-center'>Add a book to the Bookbox and start swapping!</h1>
-  <div class="w-1/3">
-    <%= simple_form_for @book do |f| %>
-      <%= f.input :isbn %>
-      <%= f.input :condition %>
-      <%= f.input :displayed %>
-      <%= f.button :submit %>
-    <% end %>
+<div class="h-fit">
+  <div class="px-3 h-fit text-gray-800" >
+    <div class="p-2">
+      <%= link_to books_path do %>
+        <i class="fa-solid fa-arrow-left"></i>
+      <% end %>
+    </div>
+    <div class=" flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
+      <div class=" p-8 rounded-lg h-full h-1/2 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
+        <img
+          src="https://cdn.dribbble.com/users/324827/screenshots/5500303/media/d67b1dc44130fdaad6845b82e2a4a013.jpg?compress=1&resize=450x338&vertical=top"
+          class="rounded-lg w-full"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class=" p-8 rounded-lg h-full h-1/2 ">
+        <div class="flex-row items-center bg-white rounded p-8 ">
+          <h1 class='text-2xl text-center font-bold align-center  '>Add a book to the Bookbox and start swapping !</h1>
+        </div>
+        <div class="flex-row items-center bg-white rounded p-8">
+          <%= simple_form_for @book do |f| %>
+            <div class="form-inputs">
+              <%= f.input :isbn, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
+              <%= f.input :condition, collection: ["Used", "Good condition", "As new", "New"], input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'}%>
+              <%= f.input :displayed, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
+            </div>
+            <div class="form-actions mt-6">
+              <%= f.button :submit, "Add your book", class:'bg-indigo-400 hover:bg-indigo-300 shadow appearance-none border rounded w-full py-2 px-3 text-white font-bold' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
