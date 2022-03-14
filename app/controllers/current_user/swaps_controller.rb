@@ -39,10 +39,8 @@ class CurrentUser::SwapsController < ApplicationController
     )
     @new_user_book_relationship_owner.save
     @swap.save
-    redirect_to book_path(@swap.swapped_book_id)
+    redirect_to "/current_user/swaps"
   end
-
-
 
   private
 
