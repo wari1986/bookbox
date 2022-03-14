@@ -1,5 +1,5 @@
   <div class="m-16">
-    <h2 class="text-2xl text-indigo-400">Received swaps pending (<%= @pending_incoming_swaps_count %>)</h2>
+    <h2 class="text-2xl text-indigo-400">Swaps waiting for my confirmation (<%= @pending_incoming_swaps_count %>)</h2>
           <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
             <div class="inline-block px-3">
               <div> <% @pending_incoming_swaps.each do |pending_incoming_swap| %>
@@ -60,7 +60,7 @@
 
 
 
-  <h2 class="text-2xl text-indigo-400">Sent swaps pending (<%= @pending_requested_swaps_count %>)</h2>
+  <h2 class="text-2xl text-indigo-400"> Swaps waiting for the swapper's confirmation (<%= @pending_requested_swaps_count %>)</h2>
 
     <%# <div class="container my-8 w-full"> %>
         <%# <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
@@ -75,7 +75,6 @@
                       </div>
                       <p class="mb-4">
                         <span class="text-primary-900"><%= pending_requested_swap.swapped_book.title.truncate(17) %></span>
-
                       </p>
                       <div class="flex items-center"> <img class="w-10 mr-4 rounded-full bg-neutral-500" src= <%= pending_requested_swap.swapper.profile_picture %>>
                         <div class="flex flex-col items-start">
@@ -114,7 +113,7 @@
         </div>
 
 
-  <h2 class="text-2xl text-indigo-400">Confirm the pickup (<%= @accepted_swaps.count %>)</h2>
+  <h2 class="text-2xl text-indigo-400">Confirm my pickup! </h2>
     <%# <div class="container my-8 w-full"> %>
         <%# <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
           <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
