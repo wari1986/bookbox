@@ -10,7 +10,7 @@
             <%= image_tag book.cover, class: "w-60 h-full rounded-lg" %>
           <% end %>
           </div>
-          <div class="relative w-1/2 my-5 mx-4 leading-tight md:p-4">
+          <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-4">
             <h2 class="text-gray-600"><%=book.author %></h2>
             <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(22), book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
@@ -20,7 +20,7 @@
               <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
             </div>
             <div class="inline-block align-bottom">
-              <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-300 text-white text-sm font-medium rounded-full">
+              <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-500 text-white text-sm font-medium rounded-full">
                 <%=book.category %>
               </span>
             </div>
@@ -44,9 +44,9 @@
             <%= image_tag my_previously_owned_book.cover, class: "w-60 h-full rounded-lg" %>
           <% end %>
           </div>
-          <div class="relative w-1/2 my-5 mx-4 leading-tight md:p-4">
+          <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-4">
             <h2 class="text-gray-600"><%=my_previously_owned_book.author %></h2>
-            <h1 class="text-2xl bold-700"><%=link_to my_previously_owned_book.title.truncate(22), book_path(my_previously_owned_book) %></h1>
+            <h1 class="text-2xl bold-700"><%=link_to my_previously_owned_book.title.truncate(20), book_path(my_previously_owned_book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
             <h2 class="text-gray-600 py-4"><%=my_previously_owned_book.description.truncate_words(25) %></h2>
             <div class="grid grid-cols-2 gap-4 place-content-between">
@@ -54,13 +54,17 @@
               <h2 class="text-gray-600 py-1 font-bold"><%=my_previously_owned_book.condition %></h2>
             </div>
             <div class="inline-block align-bottom">
-              <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-300 text-white text-sm font-medium rounded-full">
+              <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-500 text-white text-sm font-medium rounded-full">
                 <%=my_previously_owned_book.category.truncate(13) %>
               </span>
               <button
                 type="button"
-                class="absolute bottom-2 right-3 inline-block px-4 py-2.5 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg"><%=link_to "Get this book!", new_book_swap_path(my_previously_owned_book) %>
+                class="absolute bottom-2 right-0 inline-block px-4 py-2.5 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg"><%=link_to "Get this book!", new_book_swap_path(my_previously_owned_book) %>
               </button>
+              <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: my_previously_owned_book.id).user_id)) do %>
+                <% previous_user = User.find(UserBookRelationship.find_by(owned: true, book_id: my_previously_owned_book.id).user_id) %>
+               <%= image_tag previous_user.profile_picture, class: "absolute top-4 right-0 w-10 rounded-full bg-neutral-500" %>
+              <% end %>
             </div>
           </div>
         </div>
