@@ -1,10 +1,10 @@
 <div data-controller="books" class="index-container my-2 mx-auto px-4 md:px-12 bg-white">
 
-  <div class="flex-row items-center bg-white rounded p-2 ">
+  <div class="flex-row items-center bg-white rounded pt-16 pb-4 px-64 ">
     <%= form_with url: books_path, method: :get, html: { class:
         'm-2', data: { books_target: 'form' } } do |f| %>
       <%= f.text_field :query,
-        class: "form-control shadow appearance-none rounded-lg w-full py-2 px-3 text-gray-700 border-4",
+        class: "form-control shadow appearance-none rounded-lg w-full py-3  text-gray-700 border-2 text-center",
         placeholder: 'Search or jumpt to...',
         value: params[:query],
         data: {
@@ -16,33 +16,65 @@
   </div>
 
   <div class="flex my-6">
-    <div class="info w-1/5 text-lg bg-white">
-      <button class="flex justify-center m-8 px-8 py-2 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
-      <div class="m-8 py-8">
-        <h1 class='text-xl my-4'>Categories</h1>
-        <ul><% %>
-          <li> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
-          <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
-          <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
-          <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
-          <li> <%= link_to "Horror", books_path(category: "B") %> </li>
-          <li> <%= link_to "Comics", books_path(category: "Biography") %> </li>
-          <li> <%= link_to "History", books_path(category: "Biography") %> </li>
+    <div class="info w-1/5 text-lg bg-gray-100 rounded my-16 mx-auto">
+      <button class="flex justify-center m-8 px-8 py-4 rounded text-white bold bg-indigo-400 mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
+      <div class="m-8 py-8 ">
+        <h1 class='text-2xl my-4'>Categories</h1>
+        <div class="grid grid-cols-2">
+          <ul class='text-md'>
+            <li class='py-1.5'> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
+            <li class='py-1.5'> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
+            <li class='py-1.5'> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
+            <li class='py-1.5'> <%= link_to "Biography", books_path(category: "Biography") %> </li>
+            <li class='py-1.5'> <%= link_to "Horror", books_path(category: "B") %> </li>
+            <li class='py-1.5'> <%= link_to "Comics", books_path(category: "Biography") %> </li>
+            <li class='py-1.5'> <%= link_to "History", books_path(category: "Biography") %> </li>
+          </ul>
+          <ul>
+            <li class='py-1.5 text-right text-green-400 px-12 '>(<%= books = @books.count %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+            <li class='py-1.5 text-right text-green-400 px-12'>(<%= rand(1...3) %>)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mx-8 my-2">
+        <h1 class='text-2xl my-4'>Rating</h1>
+        <ul class='text-xl text-yellow-600'>
+          <li><%= link_to "★★★★★" , books_path(credit_worth: "5"), class:'' %></li>
+          <li><%= link_to "★★★★☆", books_path(ccredit_worth: "4") %></li>
+          <li><%= link_to "★★★☆☆", books_path(credit_worth: "3") %></li>
+          <li><%= link_to "★★☆☆☆", books_path(credit_worth: "2") %></li>
+          <li><%= link_to "★☆☆☆☆", books_path(credit_worth: "1") %></li>
         </ul>
       </div>
-      <div class="m-8 py-8">
-        <h1 class='text-xl my-4'>Rating</h1>
-        <ul>
-          <li><%= link_to "5 stars", books_path(credit_worth: "5") %></li>
-          <li><%= link_to "4 stars", books_path(ccredit_worth: "4") %></li>
-          <li><%= link_to "3 stars", books_path(credit_worth: "3") %></li>
-          <li><%= link_to "2 stars", books_path(credit_worth: "2") %></li>
-          <li><%= link_to "1 stars", books_path(credit_worth: "1") %></li>
-        </ul>
+      <div class="mx-8 mt-8">
+        <h1 class='text-2xl my-4'>Distance</h1>
+        <div class="flex">
+          <p class='px-3 pb-1'>Min</p>
+          <input
+            type="range"
+            class="
+              form-range
+              appearance-none
+              w-2/3
+              h-6
+              p-0
+              bg-transparent
+              focus:outline-none focus:ring-0 focus:shadow-none"
+            min="1"
+            max="5"
+            id="customRange2"
+          />
+          <p class='px-3 pb-1'>Max</p>
+        </div>
       </div>
     </div>
 
-    <div class="w-4/5 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20">
+    <div class="w-4/5 px-4 py-16  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20">
       <%= render partial: 'results', locals: { book: @books } %>
     </div>
   </div>
