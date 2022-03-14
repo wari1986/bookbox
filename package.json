@@ -14,7 +14,8 @@
     "postcss": "7",
     "stimulus": "^3.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "tw-elements": "^1.0.0-alpha11"
   },
   "version": "0.1.0",
   "devDependencies": {
