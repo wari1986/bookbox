@@ -25,7 +25,7 @@ class SwapsController < ApplicationController
     @swap = Swap.find(params[:id])
     @swap.accepted = params[:accepted]
     @swap.save
-    redirect_to book_path(@swap.swapped_book_id)
+    redirect_to "/current_user/swaps"
   end
 
 
