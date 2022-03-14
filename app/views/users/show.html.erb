@@ -12,26 +12,24 @@
   </div>
   <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
     <li class="flex flex-col items-center justify-around">
-      <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-      </svg>
+      <h2 class="w-4 fill-current text-indigo-500 text-xl font-bold"> <%= @owned_user_books.count %></h2>
+      </h2>
       <div>Owned books</div>
     </li>
     <li class="flex flex-col items-center justify-between">
-      <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-        <path d="M7 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1c2.15 0 4.2.4 6.1 1.09L12 16h-1.25L10 20H4l-.75-4H2L.9 10.09A17.93 17.93 0 0 1 7 9zm8.31.17c1.32.18 2.59.48 3.8.92L18 16h-1.25L16 20h-3.96l.37-2h1.25l1.65-8.83zM13 0a4 4 0 1 1-1.33 7.76 5.96 5.96 0 0 0 0-7.52C12.1.1 12.53 0 13 0z"/>
-      </svg>
+      <h2 class="w-4 fill-current text-indigo-500 text-xl font-bold"> <%= @previously_owned_user_books.count %></h2>
       <div>Swapped books</div>
     </li>
   </ul>
   <div class="p-4 border-t mx-8 mt-2">
-    <button class="w-1/2 block mx-auto rounded-full bg-indigo-500 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
+    <button class="w-1/2 block mx-auto rounded-full bg-indigo-500 hover:shadow-lg font-semibold text-white px-6 py-2"><%= link_to "Follow", "https://www.youtube.com/watch?reload=9&v=dQw4w9WgXcQ" %></button>
   </div>
 </div>
 
-<div class="m-6">
+<div class="mx-12 mb-4">
     <div class="my-4">
-     <div class="mx-auto py-8 w-4/5">
+     <div class="mx-auto py-2 w-4/5">
+      <h2 class="text-2xl my-8 text-indigo-400"> <%= @user.first_name %>'s books (<%= @owned_user_books.count %>)</h2>
       <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
         <% @owned_user_books.each do |owned_user_book| %>
         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
@@ -66,36 +64,36 @@
  </div>
 
 
-    <h2 class="text-2xl my-8 text-indigo-400"> <%= @user.first_name %>'s swapped books (<%= @previously_owned_user_books.count %>)</h2>
     <div class="my-4">
-     <div class="mx-auto py-8 w-4/5">
+    <div class="mx-auto py-2 w-4/5">
+    <h2 class="text-2xl my-8 text-indigo-400"> <%= @user.first_name %>'s swapped books (<%= @previously_owned_user_books.count %>)</h2>
       <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
-        <% @my_previously_owned_books.each do |my_previously_owned_book| %>
+        <% @previously_owned_user_books.each do |book| %>
         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <div class="flex justify-center">
-          <%= link_to book_path(my_previously_owned_book.id) do %>
-            <%= image_tag my_previously_owned_book.cover, class: "w-60 h-full rounded-lg" %>
+          <%= link_to book_path(book.id) do %>
+            <%= image_tag book.cover, class: "w-60 h-full rounded-lg" %>
           <% end %>
           </div>
           <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-4">
-            <h2 class="text-gray-600"><%=my_previously_owned_book.author %></h2>
-            <h1 class="text-2xl bold-700"><%=link_to my_previously_owned_book.title.truncate(20), book_path(my_previously_owned_book) %></h1>
+            <h2 class="text-gray-600"><%=book.author %></h2>
+            <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(20), book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
-            <h2 class="text-gray-600 py-4"><%=my_previously_owned_book.description.truncate_words(25) %></h2>
+            <h2 class="text-gray-600 py-4"><%=book.description.truncate_words(25) %></h2>
             <div class="grid grid-cols-2 gap-4 place-content-between">
-              <h2 class="text-gray-600 py-1 font-bold"><%=my_previously_owned_book.language.upcase %></h2>
-              <h2 class="text-gray-600 py-1 font-bold"><%=my_previously_owned_book.condition %></h2>
+              <h2 class="text-gray-600 py-1 font-bold"><%=book.language.upcase %></h2>
+              <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
             </div>
             <div class="inline-block align-bottom">
               <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-500 text-white text-sm font-medium rounded-full">
-                <%=my_previously_owned_book.category.truncate(13) %>
+                <%=book.category.truncate(13) %>
               </span>
               <button
                 type="button"
-                class="absolute bottom-2 right-0 inline-block px-4 py-2.5 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg"><%=link_to "Get this book!", new_book_swap_path(my_previously_owned_book) %>
+                class="absolute bottom-2 right-0 inline-block px-4 py-2.5 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg"><%=link_to "Get this book!", new_book_swap_path(book) %>
               </button>
-              <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: my_previously_owned_book.id).user_id)) do %>
-                <% previous_user = User.find(UserBookRelationship.find_by(owned: true, book_id: my_previously_owned_book.id).user_id) %>
+              <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id)) do %>
+                <% previous_user = User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id) %>
                <%= image_tag previous_user.profile_picture, class: "absolute top-4 right-0 w-10 rounded-full bg-neutral-500" %>
               <% end %>
             </div>
