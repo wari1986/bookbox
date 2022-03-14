@@ -2,7 +2,7 @@
         <% @books.each_with_index do |book, index| %>
         <div class="flex justify-center">
           <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-            <img class="w-2/5 object-fit md:w-48 h-80 rounded-t-lg md:rounded-none md:rounded-l-lg sm:w-full" src="<%= book.cover %>" alt="book cover">
+            <img class="w-2/5 object-fit md:w-full h-full rounded-t-lg md:rounded-none md:rounded-l-lg sm:w-full" src="<%= book.cover %>" alt="book cover">
             <div class="w-3/5 p-6 flex flex-col justify-start md: w-full">
               <div class="ml-auto">
                 <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id)) do %>
