@@ -3,7 +3,10 @@ class SwapsController < ApplicationController
     @swap = Swap.new
     @book = Book.find(params[:book_id])
     @mybooks = UserBookRelationship.where(user: current_user, owned: true).map { |user_book_relationship| user_book_relationship.book}
+
+
   end
+
 
   def create
     @user_book_relationship = UserBookRelationship.find_by(book: params[:book_id], owned: true)

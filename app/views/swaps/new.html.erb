@@ -1,16 +1,31 @@
-<div class="bg-gradient-to-tr from-blue-100 via-blue-300 to-blue-500 min-h-screen">
+<div class="h-screen">
+  <div class="px-3 h-fit text-gray-800">
 
-  <div class="container">
-    <div class="card-body font-bold text-center ">
-    <h1>Please select the book you want to swap</h1>
-    </div>
-
-    <div class="card-body ">
-      <%= simple_form_for([@book, @swap]) do |f| %>
-        <%= f.input :book_id, collection: @mybooks %>
-        <%= f.submit "Send" %>
+    <div class="p-2">
+      <%= link_to books_path do %>
+        <div class=" text-indigo-500/50 hover:text-indigo-600 text-sm">
+          <i class="fa-solid fa-arrow-left"> back</i>
+        </div>
       <% end %>
     </div>
-  </div>
 
+    <div class="m-auto w-1/2">
+      <div class="flex-row items-center bg-white font-bold rounded p-4">
+        <h1 class='text-2xl text-center align-center text-indigo-400 '>PLEASE SELECT A BOOK TO SWAP</h1>
+      </div>
+      <div class="flex-row items-center m-auto w-1/2 bg-white rounded shadow p-8 ">
+        <%= simple_form_for([@book, @swap]) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :book_id, collection: @mybooks, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'}%>
+          </div>
+          <div class="form-actions mt-6">
+            <%= f.submit "Confirm Swap", class:'bg-indigo-400 hover:bg-indigo-300 shadow appearance-none border rounded w-full py-2 px-3 text-white font-bold' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+
+  </div>
 </div>
