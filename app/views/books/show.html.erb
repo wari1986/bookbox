@@ -14,12 +14,10 @@
     <div class="info w-3/4 p-4">
       <div class=''>
         <div class="flex mb-8">
-          <div class='w-1/2 my-12'>
+          <div class='w-3/5 my-12'>
             <h1 class="text-3xl my-2"><%=@book.title %></h1>
             <h5 class="text-gray-500 my-2"><%=@book.author %></h5>
-            <%# <h5 class=""><%=@book.average_rating %></h5>
-            <%# <h5 class=""><%=@book.distance %></h5>
-            <p class='text-justify my-8'><%= @book.description.truncate_words(200) %></p>
+            <p class='text-justify my-8'><%= @book.description.truncate_words(120) %></p>
             <div class='grid grid-cols-4 my-4 w-1/2'>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.category %></h5>
               <h5 class='text-gray-500 m-2 px-4'><%= @book.year %></h5>
@@ -38,8 +36,8 @@
               <% end %>
             </div>
           </div>
-          <div class='w-1/2 flex'>
-            <img class='mx-auto'src="<%=@book.cover %>" alt="">
+          <div class='w-2/5 flex justify-center align-middle my-auto'>
+            <img class='h-96 object-fit' src="<%=@book.cover %>" alt="">
           </div>
         </div>
         <div class="w-1/2 flex justify-end">
