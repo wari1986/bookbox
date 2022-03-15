@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class='w-2/5 flex justify-center align-middle my-auto'>
-            <img class='h-96 object-fit' src="<%=@book.cover %>" alt="">
+            <img class='h-96 object-fit rounded-lg' src="<%=@book.cover %>" alt="">
           </div>
         </div>
         <div class="w-1/2 flex justify-end">
@@ -45,21 +45,21 @@
           <button class="bg-indigo-400 text-white mr-8 py-3 px-8 rounded"><%=link_to "Get this book!", new_book_swap_path(@book) %></button>
         <% end %>
         </div>
-        <div class='mx-auto my-16 p-8 h-32 bg-gray-200 text-center'>
-          <h3>Previous owners</h3>
-          <div>
-            <% if @previous_owners.empty? && @user_book_relationship %>
-              <h4>Congrats, you are the first owner of this book! Start swapping with others to create a chain!</h4>
-              <% elsif @previous_owners.empty? && @user_book_relationship == nil%>
-                <h4>Be the first to swap this book and start the chain!</h4>
-              <% else @previous_owners.each do |previous_owner| %>
-                <img class="h-8 w-8 rounded-full" src="<%= previous_owner.profile_picture %>"alt="">
-                <%# add other information on the user %>
-                <%# add distance travelled by the book between each owner %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
+    </div>
+    <div class='mx-auto my-16 p-8 h-32 bg-gray-200 text-center'>
+      <h3>Previous owners</h3>
+      <div>
+        <% if @previous_owners.empty? && @user_book_relationship %>
+          <h4>Congrats, you are the first owner of this book! Start swapping with others to create a chain!</h4>
+          <% elsif @previous_owners.empty? && @user_book_relationship == nil%>
+            <h4>Be the first to swap this book and start the chain!</h4>
+          <% else @previous_owners.each do |previous_owner| %>
+            <img class="h-8 w-8 rounded-full" src="<%= previous_owner.profile_picture %>"alt="">
+            <%# add other information on the user %>
+            <%# add distance travelled by the book between each owner %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class='flex'>
       <div class='w-1/2'>
