@@ -17,14 +17,11 @@
                 <% if @index_distances[index] > 1 %>
                   <p class="text-gray-600 text-xs"> <%= @index_distances[index] %> km</p>
                   <% else %>
-                  <p class="text-gray-600 text-xs"> < 1 km</p>
+                  <p class="text-gray-600 text-xs">< 1 km</p>
                   <% end %>
                 <% end %>
               <div class="flex space-x-2 justify-center">
                 <button
-                  type="button"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
                   class="inline-block px-6 py-2.5 my-4 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><%=link_to "Get this book!", new_book_swap_path(book) %>
                 </button>
               </div>
