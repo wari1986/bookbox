@@ -4,11 +4,7 @@ class SwapsController < ApplicationController
     @book = Book.find(params[:book_id])
     @mybooks = UserBookRelationship.where(user: current_user, owned: true).map { |user_book_relationship| user_book_relationship.book}
 
-    rels = current_user.user_book_relationships
-    @my_books = Book.where(id: rels.where(owned: true).select(:book_id))
-    @my_books_count = @my_books.count
-    @my_previously_owned_books = Book.where(id: rels.where(owned: false).select(:book_id))
-    @my_previously_owned_books_count = @my_previously_owned_books.count
+
   end
 
 
