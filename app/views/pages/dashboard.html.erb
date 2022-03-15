@@ -1,41 +1,66 @@
-<div class="m-16">
-  <h2 class="text-2xl text-indigo-400">My books (<%= @my_books_count %>)</h2>
+<div class="max-w-3xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-6 bg-white shadow-xl rounded-lg text-gray-900">
+  <div class="rounded-t-lg h-32 overflow-hidden">
+    <img class="object-cover object-top w-full" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt='Mountain'>
+  </div>
+  <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+    <img class="object-cover object-center h-32" src= <%=@current_user.profile_picture %>>
+  </div>
+  <div class="text-center mt-2">
+    <h2 class="font-semibold"><%=@current_user.first_name %></h2>
+    <p class="text-gray-500">Hi there, I love discovering new books ❤📚</p>
+  </div>
+  <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
+    <li class="flex flex-col items-center justify-around">
+      <h2 class="w-4 fill-current text-indigo-500 text-xl font-bold"> <%= @my_books.count %></h2>
+      </h2>
+      <div>Owned books</div>
+    </li>
+    <li class="flex flex-col items-center justify-between">
+      <h2 class="w-4 fill-current text-indigo-500 text-xl font-bold"> <%= @my_previously_owned_books.count %></h2>
+      <div>Swapped books</div>
+    </li>
+  </ul>
+</div>
+
+<div class="mx-12 mb-4">
   <div class="my-4">
-     <div class="mx-auto py-8 w-4/5">
-      <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
-        <% @my_books.each do |book| %>
-        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-          <div class="flex justify-center">
-          <%= link_to book_path(book.id) do %>
-            <%= image_tag book.cover, class: "w-60 h-full rounded-lg" %>
+    <div class="mx-auto py-2 w-4/5">
+      <h2 class="text-2xl mb-6 mt-2 text-indigo-400">My books (<%= @my_books_count %>)</h2>
+        <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
+          <% @my_books.each do |book| %>
+          <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+            <div class="flex justify-center">
+            <%= link_to book_path(book.id) do %>
+              <%= image_tag book.cover, class: "w-60 h-full rounded-lg" %>
+            <% end %>
+            </div>
+            <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-4">
+              <h2 class="text-gray-600"><%=book.author %></h2>
+              <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(22), book_path(book) %></h1>
+              <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
+              <h2 class="text-gray-600 py-4"><%=book.description.truncate_words(25) %></h2>
+              <div class="grid grid-cols-2 gap-4 place-content-between">
+                <h2 class="text-gray-600 py-1 font-bold"><%=book.language.upcase %></h2>
+                <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
+              </div>
+              <div class="inline-block align-bottom">
+                <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-500 text-white text-sm font-medium rounded-full">
+                  <%=book.category %>
+                </span>
+              </div>
+
+
+              <%# <button class="w-full m-8 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600" id="create_button"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
+            </div>
+          </div>
           <% end %>
-          </div>
-          <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-4">
-            <h2 class="text-gray-600"><%=book.author %></h2>
-            <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(22), book_path(book) %></h1>
-            <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
-            <h2 class="text-gray-600 py-4"><%=book.description.truncate_words(25) %></h2>
-            <div class="grid grid-cols-2 gap-4 place-content-between">
-              <h2 class="text-gray-600 py-1 font-bold"><%=book.language.upcase %></h2>
-              <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
-            </div>
-            <div class="inline-block align-bottom">
-              <span class="absolute bottom-2 left-3 px-4 py-2 bg-indigo-500 text-white text-sm font-medium rounded-full">
-                <%=book.category %>
-              </span>
-            </div>
-
-
-            <%# <button class="w-full m-8 px-8 py-2 rounded text-indigo-600 bold bg-white mx-auto border-solid border-2 border-indigo-600" id="create_button"><%=link_to "Get this book!", new_book_swap_path(book) %></button>
-          </div>
         </div>
-        <% end %>
       </div>
-    </div>
+     </div>
 
+  <div class="my-4">
+    <div class="mx-auto py-2 w-4/5">
     <h2 class="text-2xl my-8 text-indigo-400"> My swapped books (<%= @my_previously_owned_books_count %>)</h2>
-    <div class="my-4">
-     <div class="mx-auto py-8 w-4/5">
       <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
         <% @my_previously_owned_books.each do |my_previously_owned_book| %>
         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
