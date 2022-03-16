@@ -11,10 +11,10 @@ class BooksController < ApplicationController
       @books = Book.where("title ILIKE ?", "%#{params[:query]}%") - hidden_books - my_books
     elsif  params[:category].present?
       @books = Book.where("category ILIKE ?", "%#{params[:category]}%") - hidden_books - my_books
-    elsif params[:rating].present?
-      @books = Book.where("category ILIKE ?", "%#{params[:credit_worth]}%") - hidden_books - my_books
+    elsif params[:credit_worth].present?
+      @books = Book.where("credit_worth ILIKE ?", "%#{params[:credit_worth]}%") - hidden_books - my_books
     else
-      @books
+      @books = Book.all - hidden_books - my_books
     end
     @index_distances = index_distances
 
