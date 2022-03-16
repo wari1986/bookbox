@@ -1,10 +1,10 @@
 <div data-controller="books" class="index-container mx-auto px-4 md:px-12 bg-white">
 
-  <div class="flex-row items-center bg-white rounded pt-8 pb-4 px-64 ">
+  <div class="flex-row items-center bg-white rounded-full pt-8 pb-4 px-64 ">
     <%= form_with url: books_path, method: :get, html: { class:
         'm-2', data: { books_target: 'form' } } do |f| %>
       <%= f.text_field :query,
-        class: "form-control shadow-lg appearance-none rounded-lg w-full py-3  text-gray-700 border-2 text-center",
+        class: "form-control shadow-lg appearance-none rounded-full w-full py-3  text-gray-700 border-2 text-center",
         placeholder: 'Search the Bookbox...',
         value: params[:query],
         data: {
@@ -16,19 +16,19 @@
   </div>
 
   <div class="flex mt-2 mb-4">
-    <div class="info w-1/5 text-lg bg-gray-100 rounded-lg bg-white shadow-lg my-16 mx-auto">
-      <button class="flex justify-center m-8 px-8 py-4 rounded text-white bold bg-indigo-400 shadow-lg mx-auto" id="create_button"><%=link_to "Add a Book", new_book_path %></button>
-      <div class="m-8 py-8 ">
+    <div class="info w-1/5 text-lg bg-gray-100 rounded-lg bg-white shadow-lg my-12 ">
+      <button class="flex justify-center m-8 px-8 py-4 shadow-lg rounded-full text-white bold bg-indigo-400 shadow-lg mx-auto" id="create_button"><%=link_to "Add a book", new_book_path %></button>
+      <div class="m-8 pt-8 pb-4 ">
         <h1 class='text-2xl my-4'>Categories</h1>
         <div class="grid grid-cols-2">
           <ul class='text-md'>
-            <li> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
-            <li> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
-            <li> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
-            <li> <%= link_to "Biography", books_path(category: "Biography") %> </li>
-            <li> <%= link_to "Horror", books_path(category: "B") %> </li>
-            <li> <%= link_to "Comics", books_path(category: "Biography") %> </li>
-            <li> <%= link_to "History", books_path(category: "Biography") %> </li>
+            <li class = hover:text-indigo-400> <%= link_to "All books", books_path, data: {action: "click->books#fetchBooks"} %></li>
+            <li class = hover:text-indigo-400> <%= link_to "Fiction", books_path(category: "Fiction") %></li>
+            <li class = hover:text-indigo-400> <%= link_to "Cooking", books_path(category: "Cooking") %> </li>
+            <li class = hover:text-indigo-400> <%= link_to "Biography", books_path(category: "Biography") %> </li>
+            <li class = hover:text-indigo-400> <%= link_to "Horror", books_path(category: "B") %> </li>
+            <li class = hover:text-indigo-400> <%= link_to "Comics", books_path(category: "Biography") %> </li>
+            <li class = hover:text-indigo-400> <%= link_to "History", books_path(category: "Biography") %> </li>
           </ul>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <h1 class='text-2xl my-4'>Rating</h1>
         <ul class='text-xl text-yellow-600'>
           <li><%= link_to "★★★★★" , books_path(credit_worth: "5"), class:'' %></li>
-          <li><%= link_to "★★★★☆", books_path(ccredit_worth: "4") %></li>
+          <li><%= link_to "★★★★☆", books_path(credit_worth: "4") %></li>
           <li><%= link_to "★★★☆☆", books_path(credit_worth: "3") %></li>
           <li><%= link_to "★★☆☆☆", books_path(credit_worth: "2") %></li>
           <li><%= link_to "★☆☆☆☆", books_path(credit_worth: "1") %></li>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="w-4/5 px-4 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20">
+    <div class="w-4/5 px-4 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-12">
       <%= render partial: 'results', locals: { book: @books } %>
     </div>
   </div>
