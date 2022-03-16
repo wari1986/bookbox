@@ -1,5 +1,5 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="bg-indigo-400 py-4">
+<nav class="bg-indigo-400 py-6">
   <div class=" px-4 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -30,35 +30,35 @@
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex-shrink-0 flex items-center">
           <%# <%=link_to "BOOKBOX", root_path, class:"text-white"%>
-            <%= link_to "BOOKBOX", books_path, class: "text-white px-10 py-2 text-3xl font-medium" %>
+            <%= link_to "BOOKBOX", books_path, class: "text-white px-10 py-2 text-5xl" %>
         </div>
-        <div class="hidden sm:block sm:ml-6">
-          <div class="flex space-x-12">
-            <% if current_user %>
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <%# <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Bookshelf</a> %>
-              <%# <%= link_to "Bookshelf", dashboard_path, class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
-              <%= link_to "Add a book", new_book_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
-              <%= link_to "My bookshelf", dashboard_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
-              <%= link_to "My swaps", current_user_swaps_path, class:"text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
-            <% end %>
-          </div>
+      </div>
+      <div class="hidden sm:block sm:ml-6">
+        <div class="flex space-x-5">
+          <% if current_user %>
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <%# <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Bookshelf</a> %>
+            <%# <%= link_to "Bookshelf", dashboard_path, class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Add a book", new_book_path, class:"text-white hover:text-gray-300 px-3 py-4 text-xl"%>
+            <%= link_to "My bookshelf", dashboard_path, class:"text-white hover:text-gray-300 px-3 py-4 text-xl"%>
+            <%= link_to "My swaps", current_user_swaps_path, class:"text-white hover:text-gray-300 px-3 py-4 text-xl"%>
+          <% end %>
         </div>
       </div>
       <div class=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
          <% if current_user %>
         <!-- Profile dropdown -->
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-white hover:text-gray-300 px-3 py-4 text-xl"%>
           <% else %>
-          <%= link_to "Sign in", "/books", class: "text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
-          <%= link_to "Sign up", "/users/sign_up", class: "text-white hover:text-gray-300 px-3 py-4 text-base font-medium"%>
+          <%= link_to "Sign in", "/books", class: "text-white hover:text-gray-300 px-3 py-4 text-xl"%>
+          <%= link_to "Sign up", "/users/sign_up", class: "text-white hover:text-gray-300 px-3 py-4 text-xl"%>
         <% end %>
         <div class="ml-3 relative">
           <div>
             <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-label="true" aria-haspopup="true">
               <span class="sr-only">Open user menu</span>
               <% if current_user %>
-                <img class="h-8 w-8 rounded-full" src="<%= current_user.profile_picture %>"alt="">
+                <img class="h-10 w-10 rounded-full" src="<%= current_user.profile_picture %>"alt="">
               <% end %>
             </button>
           </div>
