@@ -19,17 +19,57 @@ brussels_addresses = ["1 Boulevard Adolphe Max, Bruxelles", "1 Rue d'Aerschot, B
 # creating users
 all_users = []
 
-4.times do |n|
+26.times do |n|
   lorem_face = (1..6750).to_a.sample
-  user = User.create(email: "User#{n+1}@email.com", password: '123456', address: brussels_addresses.sample, first_name: Faker::Name.first_name, profile_picture: "https://faces-img.xcdn.link/image-lorem-face-#{lorem_face}.jpg")
+  user_first_name = Faker::Name.neutral_first_name
+  user_last_name = Faker::Name.last_name
+  user = User.create(email: "#{user_first_name}.#{user_last_name}@email.com", password: '123456', address: brussels_addresses.sample, first_name: user_first_name, profile_picture: "https://faces-img.xcdn.link/image-lorem-face-#{lorem_face}.jpg")
   all_users << user
 end
+
+nicolas = User.create(
+  email: "nicolas.charlier@email.com",
+  password: '123456',
+  address: "12 Cantersteen, Bruxelles",
+  first_name: "Nicolas",
+  profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1633421201/qhsffpwp1olzffr5syoe.jpg"
+)
+all_users << nicolas
+
+stephan = User.create(
+  email: "stephan.dierckx@email.com",
+  password: '123456',
+  address: "16 rue Brederode, Bruxelles",
+  first_name: "Stephan",
+  profile_picture: "https://avatars.githubusercontent.com/u/90523184?v=4"
+)
+all_users << stephan
+
+aadel = User.create(
+  email: "aadel.bouzambou@email.com",
+  password: '123456',
+  address: "16 rue de la loi, Bruxelles",
+  first_name: "Aadel",
+  profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1626242034/uf5ffo2mtg7jbifqorsz.jpg"
+)
+all_users << aadel
+
+nicolay = User.create(
+  email: "nicolay.camacho@email.com",
+  password: '123456',
+  address: "1 Avenue du Parc Royal, Bruxelles",
+  first_name: "Aadel",
+  profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1626242034/uf5ffo2mtg7jbifqorsz.jpg"
+)
+all_users << nicolay
+
+
 p all_users
 
 # creating book instances and for each book, the previous User-book relationships and swaps that have led to its current "owned" status
 puts "Creating books, swaps and user-book relationships"
 
-isbns = ["9780735222359", "9781419753961", "9780306923043", "9781538724736", "9781250830449", "9780441172719", "9780762447695", "9781945649134", "9780525536963", "9780316299220", "9780063159983", "9780399590528", "9780735219106", "9781982108649", "9781250209788", "9780593296691", "9780062868947"]
+isbns = ["9780735222359", "9781419753961", "132400665X", "9781982134204", "9780306923043", "9781538724736", "9780063003057", "9781501110368", "9781982166793", "9781250830449", "9780441172719", "9780762447695", "9781945649134", "9780525536963", "9780316299220", "9780063159983", "9780399590528", "9780735219106", "9781982108649", "9781250209788", "9780593296691", "9780062868947", "9781632062567", "9780060959470",  "9780060959470", "1583335862", "9780062292070",  "9780062888433",  "9780143105329",  "9780345350688",  "9780374212230",  "9780374212230",  "9780374529949", "1452179611", "9780374532079",  "9780374532079",  "9780385348737",  "9780385547932",  "9780399592553",  "9780441013593", "1476753830", "9780451524935",  "9780525559474",  "9780525562047",  "9780525657743",  "9780593358337",  "9780785834205",  "9781400078431",  "9781449486792",  "9781449489892",  "9781501110368",  "9781501161933",  "9781501161933",  "9781538703526",  "9781538732182",  "9781607105480",  "9781607105510",  "9781607105534",  "9781607105541",  "9781607105565",  "9781607105572",  "9781607107293",  "9781607107316",  "9781607108160",  "9781607109433",  "9781607109440",  "9781607109457",  "9781607109464",  "9781607109471",  "9781626860551",  "9781626860575",  "9781626860605",  "9781626860636",  "9781626862555",  "9781626863903",  "9781626863910",  "9781626863927",  "9781626863934",  "9781626864672",  "9781626866072",  "9781626869721",  "9781632060327",  "9781632060754",  "9781632060785",  "9781632060976",  "9781632061195",  "9781632061744",  "9781645170006",  "9781645171782",  "9781645173496",  "9781645173625",  "9781684122882",  "9781684122905",  "9781684122936",  "9781684126583",  "9781684129201",  "9781684129959",  "9781684129997",  "9781878424310",  "9781984806758",  "9781984822185",  "9781984877925", "9780374212230", "9780394747231", "9780399592553", "9780735220201", "9781250274618", "9781501160844", "9781501161933", "9781501161933", "9781524798642", "9781534441613", "9781542025607", "9781607105558", "9781607107286", "9781607107323", "9781620976814", "9781635574074", "9781662915352"]
 
 # creating instances for each ISBN
 isbns.each do |isbn|
