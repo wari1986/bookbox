@@ -20,7 +20,7 @@
               <% else %>
                 <p class="text-gray-600 mt-3 text-xs">★★☆☆☆</p>
               <% end %>
-              <% unless current_user.address.nil? %>
+              <% unless current_user.address.nil? || @index_distances == [] %>
                 <% if @index_distances[index] > 1 %>
                   <p class="text-gray-600 text-xs"> <%= @index_distances[index] %> km</p>
                   <% else %>
