@@ -10,8 +10,23 @@
             <h2 class="text-gray-600"><%=book.author %></h2>
             <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(17), book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
-              <h2 class="text-gray-600 py-1 font-bold"><%=book.language.upcase %></h2>
               <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
+              <% if book.credit_worth == "5" %>
+                <p class="text-gray-600 mt-3 text-xs">★★★★★</p>
+              <% elsif book.credit_worth == "4" %>
+                <p class="text-gray-600 mt-3 text-xs">★★★★☆</p>
+              <% elsif book.credit_worth == "3" %>
+                <p class="text-gray-600 mt-3 text-xs">★★★☆☆</p>
+              <% else %>
+                <p class="text-gray-600 mt-3 text-xs">★★☆☆☆</p>
+              <% end %>
+              <% unless current_user.address.nil? %>
+                <% if @index_distances[index] > 1 %>
+                  <p class="text-gray-600 text-xs"> <%= @index_distances[index] %> km</p>
+                  <% else %>
+                  <p class="text-gray-600 pt-1 text-xs">< 1 km</p>
+                  <% end %>
+                <% end %>
             <div class="inline-block align-bottom">
               <button
                   class="absolute bottom-0 right-0 px-6 py-2.5 my-4 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><%=link_to "Swap it!", new_book_swap_path(book) %>
