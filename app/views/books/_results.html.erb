@@ -1,4 +1,4 @@
-<div data-books-target="results" class="flex justify-center grid gap-4 2xl:grid-cols-3 xl:grid-cols-2 mx-auto lg:grid-col-2 md:grid-cols-1 sm:max-w-sm sm:mx-auto lg:max-w-full">
+<div data-books-target="results" class="grid gap-4 2xl:grid-cols-3 xl:grid-cols-2 mx-auto lg:grid-col-2 md:grid-cols-1 sm:max-w-sm sm:mx-auto lg:max-w-full">
         <% @books.each_with_index do |book, index| %>
         <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <div class="flex justify-center">
@@ -7,24 +7,24 @@
           <% end %>
           </div>
           <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-1">
-            <h2 class="text-gray-600"><%=book.author %></h2>
-            <h1 class="text-2xl bold-700"><%=link_to book.title.truncate(17), book_path(book) %></h1>
+            <h2 class="text-gray-600 text-sm py-2"><%=book.author %></h2>
+            <h1 class="text-2xl bold-700 h-16 overflow-visible"><%=link_to book.title.truncate(17), book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
               <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
               <% if book.credit_worth == "5" %>
-                <p class="text-gray-600 mt-3 text-xs">★★★★★</p>
+                <p class="text-yellow-600 mt-3 text-xl">★★★★★</p>
               <% elsif book.credit_worth == "4" %>
-                <p class="text-gray-600 mt-3 text-xs">★★★★☆</p>
+                <p class="text-yellow-600 mt-3 text-xl">★★★★☆</p>
               <% elsif book.credit_worth == "3" %>
-                <p class="text-gray-600 mt-3 text-xs">★★★☆☆</p>
+                <p class="text-yellow-600 mt-3 text-xl">★★★☆☆</p>
               <% else %>
-                <p class="text-gray-600 mt-3 text-xs">★★☆☆☆</p>
+                <p class="text-yellow-600 mt-3 text-xl">★★☆☆☆</p>
               <% end %>
               <% unless current_user.address.nil? || @index_distances == [] %>
                 <% if @index_distances[index] > 1 %>
-                  <p class="text-gray-600 text-xs"> <%= @index_distances[index] %> km</p>
+                  <p class="text-gray-600 text-md"> <%= @index_distances[index] %> km</p>
                   <% else %>
-                  <p class="text-gray-600 pt-1 text-xs">< 1 km</p>
+                  <p class="text-gray-600 pt-1 text-md">< 1 km</p>
                   <% end %>
                 <% end %>
             <div class="inline-block align-bottom">
@@ -33,7 +33,7 @@
               </button>
               <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id)) do %>
                 <% previous_user = User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id) %>
-               <%= image_tag previous_user.profile_picture, class: "absolute bottom-5 left-0 w-7 rounded-full bg-neutral-500" %>
+               <%= image_tag previous_user.profile_picture, class: "absolute bottom-3.5 left-0 w-10 rounded-full bg-neutral-500" %>
               <% end %>
             </div>
           </div>
