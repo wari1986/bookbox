@@ -1,3 +1,11 @@
+  <div class="p-2 font-normal">
+    <%= link_to books_path do %>
+      <div class="border border-slate-300 hover:border-indigo-300 p-2 w-max rounded-full justify-start space-x-2 place-items-center flex text-indigo-500/50 hover:text-indigo-600">
+        <i class="fa-solid fa-circle-left"></i>
+        <p class="flex-initial ">back</p>
+      </div>
+    <% end %>
+  </div>
   <div class="m-16">
     <h2 class="text-2xl text-indigo-400">Swaps waiting for my confirmation (<%= @pending_incoming_swaps_count %>)</h2>
           <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
