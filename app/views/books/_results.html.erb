@@ -7,8 +7,8 @@
           <% end %>
           </div>
           <div class="relative w-1/2 my-4 mx-4 leading-tight md:p-1">
-            <h2 class="text-gray-600 text-sm py-2"><%=book.author %></h2>
-            <h1 class="text-2xl bold-700 h-16 overflow-visible"><%=link_to book.title.truncate(17), book_path(book) %></h1>
+            <h2 class="text-gray-600 text-sm py-2 h-8 overflow-hidden"><%=book.author %></h2>
+            <h1 class="text-2xl bold-700 h-16 overflow-hidden"><%=link_to book.title.truncate(17), book_path(book) %></h1>
             <%# <h2 class="text-xl bold"><%=book.average_rating %></h2>
               <h2 class="text-gray-600 py-1 font-bold"><%=book.condition %></h2>
               <% if book.credit_worth == "5" %>
@@ -29,7 +29,7 @@
                 <% end %>
             <div class="inline-block align-bottom">
               <button
-                  class="absolute bottom-0 right-0 px-6 py-2.5 my-4 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><%=link_to "Swap it!", new_book_swap_path(book) %>
+                  class="absolute bottom-0 right-0 px-4 py-2.5 my-4 text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg "><%=link_to "Swap it!", new_book_swap_path(book) %>
               </button>
               <%= link_to user_path(User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id)) do %>
                 <% previous_user = User.find(UserBookRelationship.find_by(owned: true, book_id: book.id).user_id) %>
