@@ -28,7 +28,6 @@
             <div class="form-inputs">
               <%= f.input :isbn, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
               <%= f.input :condition, collection: ["Used", "Good condition", "As new", "New"], input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'}%>
-              <%= f.input :displayed, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
             </div>
             <div class="form-actions mt-6">
               <%= f.button :submit, "Add your book", class:'bg-indigo-400 hover:bg-indigo-300 shadow appearance-none border rounded w-full py-2 px-3 text-white font-bold' %>
