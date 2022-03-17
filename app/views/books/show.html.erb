@@ -52,7 +52,7 @@
 
               <div class="w-1/2 flex justify-start">
                 <% unless @user_book_relationship %>
-                  <button class="text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mr-8 py-3 px-8 "><%=link_to "Get this book!", new_book_swap_path(@book) %></button>
+                  <button class="text-indigo-400 bg-white border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-indigo-400 hover:text-white hover:shadow-lg mr-8 py-3 px-8 "><%=link_to "Get this book!", new_book_swap_path(@book) %></button>
                 <% end %>
               </div>
 
@@ -105,15 +105,15 @@
           <div class='m-16 rounded-lg flex flex-col'>
             <h1 class='bg-gray-400 text-xl py-2 px-4 rounded-lg'><%= review.title %></h1>
             <p class='bg-gray-300 py-8 px-4 rounded-lg'><%= review.content %></p>
-            <div class='py-2 px-4 bg-gray-200 rounded-lg'>
+            <div class='py-2 px-4 bg-gray-200 rounded-lg text-yellow-600'>
               <% if review.stars == "5" %>
-                  <p class="text-gray-600 mt-3 text-xs">★★★★★</p>
+                  <p class="mt-3 text-xl">★★★★★</p>
                 <% elsif review.stars == "4" %>
-                  <p class="text-gray-600 mt-3 text-xs">★★★★☆</p>
+                  <p class="mt-3 text-xl">★★★★☆</p>
                 <% elsif review.stars == "3" %>
-                  <p class="text-gray-600 mt-3 text-xs">★★★☆☆</p>
+                  <p class="mt-3 text-xl">★★★☆☆</p>
                 <% else %>
-                  <p class="text-gray-600 mt-3 text-xs">★★☆☆☆</p>
+                  <p class="mt-3 text-xl">★★☆☆☆</p>
                 <% end %>
             </div>
           </div>
