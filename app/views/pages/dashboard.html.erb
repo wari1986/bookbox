@@ -35,7 +35,7 @@
     <div class="mx-auto py-2 w-4/5">
       <h2 class="text-2xl mb-6 mt-2 text-indigo-400">My books (<%= @my_books_count %>)</h2>
         <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
-          <% @my_books.each do |book| %>
+          <% @my_books.order("created_at DESC").each do |book| %>
           <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
             <div class="flex justify-center">
             <%= link_to book_path(book.id) do %>

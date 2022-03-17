@@ -100,7 +100,7 @@
         </div>
         <div class='w-1/2 shadow-lg rounded-lg'>
           <h2 class='text-3xl text-center py-8'>Reviews</h2>
-          <% @book.reviews.take(2).each do |review|%>
+          <% @book.reviews.order("created_at DESC").take(2).each do |review|%>
           <div class='m-16 rounded-lg flex flex-col'>
             <h1 class='bg-gray-400 text-xl py-2 px-4 rounded-lg'><%= review.title %></h1>
             <p class='bg-gray-300 py-8 px-4 rounded-lg'><%= review.content %></p>
