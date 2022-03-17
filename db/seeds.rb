@@ -36,6 +36,25 @@ nicolas = User.create(
 )
 all_users << nicolas
 
+niko = User.create(
+  email: "niko@notlewagon.com",
+  password: '123123',
+  address: "32 Avenue Louise, Bruxelles",
+  first_name: "Niko",
+  profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1611829368/e3nctdls7b1wcty3vtgz.jpg"
+)
+all_users << niko
+
+pascaline = User.create(
+  email: "pascaline@notlewagon.com",
+  password: '123456',
+  address: "Place Dailly, Bruxelles",
+  first_name: "Pascaline",
+  profile_picture: "https://ca.slack-edge.com/T02NE0241-U02758YT9V3-1142318f5670-512"
+)
+all_users << pascaline
+
+
 stephan = User.create(
   email: "stephan.dierckx@email.com",
   password: '123456',
@@ -86,7 +105,7 @@ isbns.each do |isbn|
     cover: book_detail["imageLinks"]["thumbnail"],
     description: book_detail["description"],
     language: book_detail["language"],
-    credit_worth: (1..5).to_a.sample,
+    credit_worth: (3..5).to_a.sample,
     displayed: ["true", "false"].sample,
     isbn: isbn
   )
