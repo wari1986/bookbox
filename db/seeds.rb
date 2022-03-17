@@ -116,18 +116,18 @@ isbns.each do |isbn|
   # TO DO reviews should be written only by owners or previous owners of a book.
   titles = ["Good book, feel free to swap", "Swapped this book and loved it", "Thanks Bookbox, would totally recommend", "Excellent book", "Good read!", "Swapped it, loved it", "Amazing author!", "Really enjoyed that one", "Didn't regret my swap!"]
   reviews = [
-    "I liked this book. people would love this book because it teaches about trying a new thing and how it’s important to get past being scared so you can learn new things.",
+    "I loved this book 😍 People would love this book because it teaches about trying a new thing and how it’s important to get past being scared so you can learn new things.",
     "It’s an easy chapter book with pictures on every page. I love the illustrations. Check it out in my bookshelf ✌",
     "While I definitely recommend this book to other readers, I would recommend it to older teenagers 👌",
-    "Sometimes I forget that I am reading a story and not a real-life account. Her emotions and the dialogue are so genuine",
+    "Sometimes I forget that I am reading a story and not a real-life tale. Her emotions and the dialogue are so genuine",
     "I would highly recommend this book to anyone who desires a guide to the future. Have a swap!",
     "I really think everyone would like the book. If you like animals, this one's for you, so I am expecting your swap requests 😁",
-    "This is a beautiful and useful book for everyone. Highly recommend a swap.",
+    "This is a beautiful and useful book for everyone. 🤩 Highly recommend a swap.",
     "The way this book was written is just incredible ✨ Almost got possessed while reading it.",
     "Easy to read. The book sucks you right in. Very interesting and motivating.",
     "Great book, that I discovered thanks to Bookbox!! 💙",
     "I’ve read a ton of motivational books in this style, but this book is awesome!!! One of the best! 🤩",
-    "Great book. Great author.",
+    "Great book. Great author. Loved it 📚",
     "This book is a breath of fresh air, get it from my bookshelf 😍"
   ]
   reviews_per_book = (2..4).to_a.sample
