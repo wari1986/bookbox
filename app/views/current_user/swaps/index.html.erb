@@ -34,11 +34,10 @@
   </ul>
 </div>
 
-<div class="mx-12 mb-4">
-  <div class="my-4">
-    <div class="mx-auto py-2 w-4/5">
+  <div class="m-16">
     <h2 class="text-2xl text-indigo-400">To accept (<%= @pending_incoming_swaps_count %>)</h2>
-        <div class="grid sm:grid-cols-1 gap-4 lg:grid-cols-2">
+          <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+            <div class="inline-block px-3">
               <div> <% @pending_incoming_swaps.each do |pending_incoming_swap| %>
                 <div class="md:mt-8 flex flex-wrap blue-box relative text-lg p-4" style="cursor: auto;">
                   <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
@@ -81,13 +80,13 @@
                   type="button"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
-                  class="inline-block px-6 py-2.5 mb-2 text-green-400 bg-white border border-green-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-400 hover:text-white hover:shadow-lg"><%=link_to "Accept",  swap_path(pending_incoming_swap, accepted: true), data: { confirm: "Congrats, The swap has been confirmed" }, method: :put %>
+                  class="inline-block px-6 py-2.5 mb-2 text-green-400 bg-white border border-green-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-400 hover:text-white hover:shadow-lg"><%=link_to "Accept",  swap_path(pending_incoming_swap, accepted: true), data: { confirm: "Congrats, The swap has been confirmed" }, method: :put %>
                 </button>
                 <button
                   type="button"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
-                  class="inline-block px-6 py-2.5 mb-2 text-red-400 bg-white border border-red-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-400 hover:text-white hover:shadow-lg"><%=link_to "Decline",  swap_path(pending_incoming_swap, accepted: false), data: { confirm: "Are you sure you want to decline this swap?" }, method: :put %>
+                  class="inline-block px-6 py-2.5 mb-2 text-red-400 bg-white border border-red-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-400 hover:text-white hover:shadow-lg"><%=link_to "Decline",  swap_path(pending_incoming_swap, accepted: false), data: { confirm: "Are you sure you want to decline this swap?" }, method: :put %>
                 </button>
               </div>
               <% end %>
@@ -97,7 +96,7 @@
 
 
 
-  <h2 class="text-2xl text-indigo-400"> Swaps waiting for the swapper's confirmation (<%= @pending_requested_swaps_count %>)</h2>
+  <h2 class="text-2xl text-indigo-400"> Pending (<%= @pending_requested_swaps_count %>)</h2>
 
     <%# <div class="container my-8 w-full"> %>
         <%# <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
@@ -141,7 +140,7 @@
                 </div>
               <div class="flex space-x-2 justify-center">
                 <button
-                  class="inline-block px-6 py-2.5 mb-2 bg-yellow-400 text-white shadow-lg font-medium text-xs leading-tight uppercase rounded shadow-md"> Pending
+                  class="inline-block px-6 py-2.5 mb-2 bg-yellow-400 text-white shadow-lg font-medium text-xs leading-tight uppercase rounded-full shadow-md"> Pending
                 </button>
               </div>
               <% end %>
@@ -150,7 +149,7 @@
         </div>
 
 
-  <h2 class="text-2xl text-indigo-400">Confirm my pickup! </h2>
+  <h2 class="text-2xl text-indigo-400">To confirm</h2>
     <%# <div class="container my-8 w-full"> %>
         <%# <div class="grid grid-cols-3 gap-4 md:grid-cols-2"> %>
           <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
@@ -198,13 +197,13 @@
                       type="button"
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
-                      class="inline-block px-6 py-2.5 mb-2 text-white bg-indigo-400 border border-indigo-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-white hover:text-indigo-400 hover:shadow-lg"> <%= link_to "Chat", chatroom_path(accepted_swap.chatroom) %>
+                      class="inline-block px-6 py-2.5 mb-2 text-white bg-indigo-400 border border-indigo-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-white hover:text-indigo-400 hover:shadow-lg"> <%= link_to "Chat", chatroom_path(accepted_swap.chatroom) %>
                     </button>
                     <button
                         type="button"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
-                        class="inline-block px-6 py-2.5 mb-2 text-green-400 bg-white border border-green-400 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-400 hover:text-white hover:shadow-lg"><%= link_to "Confirm swap", current_user_swap_path(accepted_swap, confirmed: true), data: { confirm: "Cool! Let's chat with the swapper to decide on practical details!" },method: :put %>
+                        class="inline-block px-6 py-2.5 mb-2 text-green-400 bg-white border border-green-400 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-400 hover:text-white hover:shadow-lg"><%= link_to "Confirm swap", current_user_swap_path(accepted_swap, confirmed: true), data: { confirm: "Cool! Let's chat with the swapper to decide on practical details!" },method: :put %>
                       </button>
                   </div>
                 <% else %>
