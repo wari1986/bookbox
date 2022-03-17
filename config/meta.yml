@@ -1,0 +1,4 @@
+meta_product_name: "Bookbox"
+meta_title: "Bookbox - BOOKS ARE MEANT TO BE SHARED"
+meta_description: "Find thousands of books near you"
+meta_image: "bookbox.jpeg" # should exist in `app/assets/images/`

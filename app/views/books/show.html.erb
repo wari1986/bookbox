@@ -1,3 +1,4 @@
+
 <div class="p-2 font-normal">
   <%= link_to books_path do %>
     <div class="border border-slate-300 hover:border-indigo-300 p-2 w-max rounded-full justify-start space-x-2 place-items-center flex text-indigo-500/50 hover:text-indigo-600">
@@ -92,7 +93,9 @@
                 <%= f.input :title, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
                 <%= f.input :content, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'}%>
                 <%= f.input :stars, input_html: {class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700'} %>
-                <div class="w-1/3 bg-indigo-400 my-8 mx-auto"><%= f.button :submit, class:'bg-indigo-400 hover:bg-indigo-300 shadow appearance-none border rounded w-full py-2 px-3 text-white font-bold' %></div>
+                <div class="w-1/3 bg-indigo-400 my-8 mx-auto">
+                  <%= f.button :submit, class:'bg-indigo-400 hover:bg-indigo-300 shadow appearance-none border rounded-full w-full py-2 px-3 text-white font-bold' %>
+                </div>
               <% end %>
             </div>
           </div>
