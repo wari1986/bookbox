@@ -30,7 +30,7 @@ end
 nicolas = User.create(
   email: "nicolas.charlier@email.com",
   password: '123456',
-  address: "12 Cantersteen, Bruxelles",
+  address: "10 Cantersteen, Bruxelles",
   first_name: "Nicolas",
   profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1633421201/qhsffpwp1olzffr5syoe.jpg"
 )
@@ -76,7 +76,7 @@ all_users << aadel
 nicolay = User.create(
   email: "nicolay.camacho@email.com",
   password: '123456',
-  address: "10 Cantersteen, Bruxelles",
+  address: "12 Cantersteen, Bruxelles",
   first_name: "Nicolay",
   profile_picture: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1634729633/vouhh9c2jncalws6ofmf.jpg"
 )
