@@ -10,6 +10,9 @@ require "open-uri"
 puts "Cleaning database..."
 Swap.destroy_all
 Book.destroy_all
+Review.destroy_all
+Chatroom.destroy_all
+Message.destroy_all
 User.destroy_all
 UserBookRelationship.destroy_all
 Swap.destroy_all
