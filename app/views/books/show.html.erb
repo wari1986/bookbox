@@ -27,7 +27,7 @@
                 <div class='w-2/3'>
                   <div class='flex justify-between'>
                     <span class="px-4 py-2 bg-indigo-500 text-white text-lg rounded-full">
-                      <h5><%= @book.category %></h5>
+                      <h5><%= @book.category.truncate(15) %></h5>
                     </span>
                       <h5 class='text-gray-500 text-lg bold m-2'><%= @book.year %></h5>
                       <h5 class='text-gray-500 text-lg bold m-2'><%= @book.language.upcase %></h5>
