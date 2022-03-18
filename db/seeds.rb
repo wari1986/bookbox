@@ -22,7 +22,7 @@ brussels_addresses = ["1 Boulevard Adolphe Max, Bruxelles", "1 Rue d'Aerschot, B
 # creating users
 all_users = []
 
-26.times do
+20.times do
   lorem_face = (1..6750).to_a.sample
   user_first_name = Faker::Name.neutral_first_name
   user_last_name = Faker::Name.last_name
